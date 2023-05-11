@@ -120,6 +120,12 @@ class BlogController extends AdminController
     public function show(string $id)
     {
         //
+        $post = Post::findOrFail($id);
+        $post->increment('view_count');
+
+        $postComments = $post->comments()->simplePaginate(3);
+
+        return view("backend.blog.comment", compact('post', 'postComments'));
     }
 
     /**

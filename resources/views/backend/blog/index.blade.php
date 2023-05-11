@@ -16,7 +16,7 @@ phpinfo();
 
         <div class="mb-3">
             <h1 class="h3 d-inline align-middle">Blog</h1>
-            <a class="badge bg-dark text-white ms-2 p-2" href="{{ route('backend.blog.create') }}" title="Novo Post">
+            <a class="badge bg-dark text-yellow1 ms-2 p-2" href="{{ route('backend.blog.create') }}" title="Novo Post">
                 <i class="align-middle" data-feather="plus-circle"></i> <span class="align-middle"> Novo Post</span>
             </a>
 

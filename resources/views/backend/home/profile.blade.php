@@ -21,11 +21,11 @@
                         <div class="text-muted mb-2">Lead Developer</div>
 
                         <div>
-                            <a class="btn btn-primary btn-sm" href="{{route('editar-perfil')}}">
+                            <a class="btn btn-primary-yellow btn-sm" href="{{route('editar-perfil')}}">
                                 <span data-feather="edit"></span>
                                 Editar
                             </a>
-                            <a class="btn btn-danger btn-sm" href="#">
+                            <a class="btn btn-dark text-yellow1 btn-sm" href="#">
                                 <span data-feather="trash"></span>
                                 Excluir
                             </a>
@@ -196,7 +196,7 @@
 
                         <hr />
                         <div class="d-grid">
-                            <a href="#" class="btn btn-primary">Load more</a>
+                            <a href="#" class="btn btn-primary-yellow">Load more</a>
                         </div>
                     </div>
                 </div>

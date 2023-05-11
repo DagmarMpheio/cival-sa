@@ -9,7 +9,7 @@
 
         <div class="mb-3">
             <h1 class="h3 d-inline align-middle">Todos Categorias</h1>
-            <a class="badge bg-dark text-white ms-2 p-2" href="{{route('backend.categorias.create')}}" title="Nova Categoria">
+            <a class="badge bg-dark text-yellow1 ms-2 p-2" href="{{route('backend.categorias.create')}}" title="Nova Categoria">
                <i class="align-middle" data-feather="plus-circle"></i> <span class="align-middle"> Nova Categoria</span>
             </a>
         </div>
@@ -40,7 +40,7 @@
                                     <td>{{ $categoria->title }}</td>
                                     <td>{{ $categoria->posts->count() }}</td>
                                     <td>
-                                        <a href="{{ route('backend.categorias.edit', $categoria->id) }}" class="btn btn-primary"
+                                        <a href="{{ route('backend.categorias.edit', $categoria->id) }}" class="btn btn-primary-yellow"
                                             title="Editar">
                                             <i class="align-middle" data-feather="edit"></i> <span
                                                 class="align-middle">Editar</span>
@@ -51,7 +51,7 @@
                                             action="{{ route('backend.categorias.destroy', $categoria->id) }}" method="post">
                                             @method('delete')
                                             {{ csrf_field() }}
-                                            <button href="#" class="btn btn-danger" title="Excluir" type="submit"
+                                            <button href="#" class="btn btn-dark text-yellow1" title="Excluir" type="submit"
                                                 onclick="return confirm('Tem a certeza?')">
                                                 <i class="align-middle" data-feather="trash"></i> <span
                                                     class="align-middle">Excluir</span>

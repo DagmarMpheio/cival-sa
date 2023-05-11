@@ -13,7 +13,7 @@
 
         <div class="mb-3">
             <h1 class="h3 d-inline align-middle">Multimédia</h1>
-            <a class="badge bg-dark text-white ms-2 p-2" href="{{ route('backend.multimedias.create') }}" title="Fazer Upload">
+            <a class="badge bg-dark text-yellow1 ms-2 p-2" href="{{ route('backend.multimedias.create') }}" title="Fazer Upload">
                 <i class="align-middle" data-feather="plus-circle"></i> <span class="align-middle"> Fazer Upoload</span>
             </a>
 

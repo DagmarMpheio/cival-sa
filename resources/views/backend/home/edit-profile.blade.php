@@ -76,7 +76,7 @@
                     </div>
                 </div>
 
-                <button class="btn btn-primary">Guardar</button>
+                <button class="btn btn-primary-yellow">Guardar</button>
                 <button class="btn btn-danger">Cancelar</button>
 
             </div>

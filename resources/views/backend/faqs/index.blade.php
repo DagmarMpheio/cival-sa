@@ -9,7 +9,7 @@
 
         <div class="mb-3">
             <h1 class="h3 d-inline align-middle">Todas FAQS</h1>
-            <a class="badge bg-dark text-white ms-2 p-2" href="{{route('backend.faqs.create')}}" title="Navo FAQ">
+            <a class="badge bg-dark text-yellow1 ms-2 p-2" href="{{route('backend.faqs.create')}}" title="Navo FAQ">
                <i class="align-middle" data-feather="plus-circle"></i> <span class="align-middle"> Nova FAQ</span>
             </a>
         </div>
@@ -38,7 +38,7 @@
                                     <td>{{ $counter++ }}</td>
                                     <td>{{ $faq->questao }}</td>
                                     <td>
-                                        <a href="{{ route('backend.faqs.edit', $faq->id) }}" class="btn btn-primary"
+                                        <a href="{{ route('backend.faqs.edit', $faq->id) }}" class="btn btn-primary-yellow"
                                             title="Editar">
                                             <i class="align-middle" data-feather="edit"></i> <span
                                                 class="align-middle">Editar</span>

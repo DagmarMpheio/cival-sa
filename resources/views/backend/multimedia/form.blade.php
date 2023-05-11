@@ -41,8 +41,8 @@
             </div>
 
         </div>
-        {!! Form::submit('Upload', ['class' => 'btn btn-primary']) !!}
-        <a class="btn btn-danger" href="{{ route('backend.multimedias.index') }}" id="draft-btn">
+        {!! Form::submit('Upload', ['class' => 'btn btn-primary-yellow']) !!}
+        <a class="btn btn-dark text-yellow1" href="{{ route('backend.multimedias.index') }}" id="draft-btn">
             <i class="align-middle" data-feather="slash"></i> <span class="align-middle">Cancelar</span></a>
     </div>
 

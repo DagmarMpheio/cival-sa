@@ -124,7 +124,7 @@
         <!-- /.box-body -->
 
         <div class="box-footer">
-            <button type="submit" class="btn btn-primary">{{$user->exists ? 'Actualizar' : 'Salvar'}}</button>
+            <button type="submit" class="btn btn-primary-yellow">{{$user->exists ? 'Actualizar' : 'Salvar'}}</button>
             <a href="{{route('backend.users.index')}}" class="btn btn-default">Cancelar</a>
         </div>
     </div>

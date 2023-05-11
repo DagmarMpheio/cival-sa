@@ -2,6 +2,10 @@
 
 @section('title', 'Dashboard')
 
+@section('style')
+    <link rel="stylesheet" href="/backend/css/custom.css">
+@endsection
+
 @section('content')
     <div class="container-fluid p-0">
 
@@ -20,7 +24,7 @@
                                         </div>
 
                                         <div class="col-auto">
-                                            <div class="stat text-primary">
+                                            <div class="stat-yellow text-yellow1">
                                                 <i class="align-middle" data-feather="truck"></i>
                                             </div>
                                         </div>
@@ -40,7 +44,8 @@
                                         </div>
 
                                         <div class="col-auto">
-                                            <div class="stat text-primary">
+                                            {{-- class="stat text-primary" --}}
+                                            <div class="stat-yellow text-yellow1">
                                                 <i class="align-middle" data-feather="users"></i>
                                             </div>
                                         </div>
@@ -62,7 +67,7 @@
                                         </div>
 
                                         <div class="col-auto">
-                                            <div class="stat text-primary">
+                                            <div class="stat-yellow text-yellow1">
                                                 <i class="align-middle" data-feather="dollar-sign"></i>
                                             </div>
                                         </div>
@@ -82,7 +87,7 @@
                                         </div>
 
                                         <div class="col-auto">
-                                            <div class="stat text-primary">
+                                            <div class="stat-yellow text-yellow1">
                                                 <i class="align-middle" data-feather="shopping-cart"></i>
                                             </div>
                                         </div>
@@ -418,7 +423,7 @@
     {{-- Calendario --}}
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function() {
-            var date = new Date(Date.now() +1 * 24 * 60 * 60 * 1000);
+            var date = new Date(Date.now() + 0 * 24 * 60 * 60 * 1000);
             var defaultDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
             document.getElementById("datetimepicker-dashboard").flatpickr({
                 inline: true,

@@ -18,6 +18,8 @@
     <title>{{ config('app.name', 'Laravel') }} -  @yield('title')</title>
 
     <link href="/backend/css/app.css" rel="stylesheet">
+    {{-- custom css --}}
+    <link href="/backend/css/custom.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     {{-- bootstrap css --}}
     {{-- <link rel="stylesheet" href="/backend/css/bootstrap/css/bootstrap.min.css">

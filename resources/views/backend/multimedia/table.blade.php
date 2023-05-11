@@ -27,7 +27,7 @@
 
                 {{-- ADD permissoes em breve --}}
                 <td>
-                    <a href="{{ route('backend.multimedias.edit', $multimedia->id) }}" class="btn btn-primary"
+                    <a href="{{ route('backend.multimedias.edit', $multimedia->id) }}" class="btn btn-primary-yellow"
                         title="Editar">
                         <i class="align-middle" data-feather="edit"></i> <span class="align-middle">Editar</span>
                     </a>
@@ -36,7 +36,7 @@
                     {!! Form::open(['method' => 'DELETE', 'route' => ['backend.multimedias.destroy', $multimedia->id]]) !!}
                     @method('delete')
                     {{ csrf_field() }}
-                    <button href="#" class="btn btn-danger" title="Excluir" type="submit"
+                    <button href="#" class="btn btn-dark text-yellow1" title="Excluir" type="submit"
                         onclick="return confirm('Tem a certeza?')">
                         <i class="align-middle" data-feather="trash"></i> <span class="align-middle">Excluir</span>
                     </button>

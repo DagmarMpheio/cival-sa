@@ -9,7 +9,7 @@
 
         <div class="mb-3">
             <h1 class="h3 d-inline align-middle">Todos Usuários</h1>
-            <a class="badge bg-dark text-white ms-2 p-2" href="{{route('backend.users.create')}}" title="Novo Usuário">
+            <a class="badge bg-dark text-yellow1 ms-2 p-2" href="{{route('backend.users.create')}}" title="Novo Usuário">
                <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle"> Novo Usuário</span>
             </a>
         </div>
@@ -44,7 +44,7 @@
                                     <td class="d-none d-xl-table-cell">{{ $user->telefone }}</td>
                                     <td class="d-none d-xl-table-cell">{{ $user->endereco }}</td>
                                     <td>
-                                        <a href="{{ route('backend.users.edit', $user->id) }}" class="btn btn-primary"
+                                        <a href="{{ route('backend.users.edit', $user->id) }}" class="btn btn-primary-yellow"
                                             title="Editar">
                                             <i class="align-middle" data-feather="edit"></i> <span
                                                 class="align-middle">Editar</span>
@@ -55,7 +55,7 @@
                                             action="{{ route('backend.users.destroy', $user->id) }}" method="post">
                                             @method('delete')
                                             {{ csrf_field() }}
-                                            <button href="#" class="btn btn-danger" title="Excluir" type="submit"
+                                            <button href="#" class="btn btn-dark text-yellow1" title="Excluir" type="submit"
                                                 onclick="return confirm('Tem a certeza?')">
                                                 <i class="align-middle" data-feather="trash"></i> <span
                                                     class="align-middle">Excluir</span>

@@ -179,7 +179,7 @@
 
         </div>
 
-        {!! Form::submit('Publicar', ['class' => 'btn btn-primary']) !!}
+        {!! Form::submit('Publicar', ['class' => 'btn btn-primary-yellow']) !!}
         <a class="btn btn-default" href="#" id="draft-btn">
             <i class="align-middle" data-feather="repeat"></i> <span class="align-middle">Guardar o rascunho</span></a>
 

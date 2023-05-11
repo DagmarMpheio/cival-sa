@@ -83,9 +83,9 @@
                     </div>
                 </div>
 
-                <button class="btn btn-primary" type="submit"><i class="align-middle" data-feather="save"></i> <span
+                <button class="btn btn-primary-yellow" type="submit"><i class="align-middle" data-feather="save"></i> <span
                         class="align-middle">Guardar</span></button>
-                <a class="btn btn-danger" href="{{ route('backend.users.index') }}"><i class="align-middle"
+                <a class="btn btn-dark text-yellow1" href="{{ route('backend.users.index') }}"><i class="align-middle"
                         data-feather="slash"></i> <span class="align-middle">Cancelar</span></a>
 
             </div>

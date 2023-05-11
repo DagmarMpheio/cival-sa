@@ -29,15 +29,20 @@
 
                 {{-- ADD permissoes em breve --}}
                 <td>
-                    <a href="{{ route('backend.blog.edit', $post->id) }}" class="btn btn-primary" title="Editar">
+                    <a href="{{ route('backend.blog.edit', $post->id) }}" class="btn btn-primary-yellow" title="Editar">
                         <i class="align-middle" data-feather="edit"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ route('backend.blog.show', $post->id) }}" class="btn btn-primary-yellow" title="Comentar">
+                        <i class="align-middle" data-feather="message-circle"></i>
                     </a>
                 </td>
                 <td>
                     {!! Form::open(['method' => 'DELETE', 'route' => ['backend.blog.destroy', $post->id]]) !!}
                     @method('delete')
                     {{ csrf_field() }}
-                    <button href="#" class="btn btn-danger" title="Mover para Reciclagem" type="submit"
+                    <button href="#" class="btn btn-dark text-yellow1" title="Mover para Reciclagem" type="submit"
                         onclick="return confirm('Tem a certeza?')">
                         <i class="align-middle" data-feather="trash"></i>
                     </button>

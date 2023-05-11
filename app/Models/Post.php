@@ -33,7 +33,7 @@ class Post extends Model
         return $this->belongsToMany(Tag::class); //varias tags pertencem a varios posts
     }
 
-    /* public function comments()
+    public function comments()
     {
         return $this->hasMany(Comment::class); //um post tem varios comentarios
     }
@@ -49,7 +49,7 @@ class Post extends Model
     public function createComment(array $data)
     {
         $this->comments()->create($data);
-    } */
+    }
 
 
     //criar tags
