@@ -64,7 +64,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Execução
 Clone o Repositório e execute os seguintes comandos:
-*composer install*
-*npm install*
-*php artisan serve*
+- *composer install*
+- *npm install*
+- *php artisan serve*
  
