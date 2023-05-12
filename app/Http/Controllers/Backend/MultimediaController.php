@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Multimedia;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
-use PhpOption\None;
 
 class MultimediaController extends AdminController
 {

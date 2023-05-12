@@ -14,4 +14,15 @@ class Servico extends Model
         'preco',
         'descricao',
     ];
+
+    //Metodos essenciais apara agendamento
+    public function employeeServices()
+    {
+        return $this->hasMany(EmployeeService::class, 'service_id');
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class, 'service_id');
+    }
 }

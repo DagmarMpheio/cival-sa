@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Categoria\CategoryDestroyResquest;
 use App\Http\Requests\Categoria\CategoryStoreRequest;
 use App\Http\Requests\Categoria\CategoryUpdateRequest;
 use App\Models\Categoria;
-use App\Models\Post;
-use Illuminate\Http\Request;
 
 class CategoriaController extends AdminController
 {

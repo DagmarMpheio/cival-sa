@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'service_id', 'employee_id', 'date', 'start_time', 'finish_time', 'comments'
+    ];
+
+    public function employee()
+    {
+        return $this->belongsTo(User::class, 'employee_id');
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Servico::class, 'user_id');
+    }
 }

@@ -72,4 +72,22 @@ class User extends Authenticatable
 
         return $grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "?d=" . urlencode($default) . "&s=" . $size;
     }
+
+
+    //Metodos essenciais para agendamento
+    public function workingHour()
+    {
+        return $this->hasMany(WorkingHour::class, 'employee_id');
+    }
+
+    public function employeeServices()
+    {
+        return $this->hasMany(EmployeeService::class, 'employee_id');
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class, 'employee_id');
+    }
+    
 }

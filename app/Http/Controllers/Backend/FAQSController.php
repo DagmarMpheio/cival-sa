@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\FAQS\FAQStoreRequest;
 use App\Http\Requests\FAQS\FAQUpdateRequest;
 use App\Models\FAQS;
-use Illuminate\Http\Request;
 
 class FAQSController extends AdminController
 {

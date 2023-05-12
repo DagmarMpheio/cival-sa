@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Servico\ServicoStoreRequest;
 use App\Http\Requests\Servico\ServicoUpdateRequest;
 use App\Models\Servico;
-use Illuminate\Http\Request;
 
 class ServicoController extends AdminController
 {
