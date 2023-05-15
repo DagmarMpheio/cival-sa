@@ -35,7 +35,7 @@ class ServicoController extends AdminController
     public function store(ServicoStoreRequest $request)
     {
         $data = $request->all();
-        $servico = Servico::create($data);
+        Servico::create($data);
 
         return redirect('/backend/servicos')->with("message", "Novo serviço inserido com sucesso!");
     }
@@ -77,7 +77,6 @@ class ServicoController extends AdminController
         //
         $servico = Servico::findOrFail($id);
         $servico->delete();
-
 
         return redirect("/backend/servicos")->with("message", "Serviço foi excluído com succeso!");
     }

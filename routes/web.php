@@ -59,7 +59,11 @@ Route::delete('/backend/blog/force-destroy/{blog}', [App\Http\Controllers\Backen
 
 Route::post('/backend/blog/{post}/comments', [App\Http\Controllers\Backend\CommentController::class, 'store'])->name('backend.blog.comment');
 
-//grupo de rotas -> blog
+//grupo de rotas -> multimedia
 Route::group(['prefix' => 'backend', 'as' => 'backend.'], function () {
     Route::resource('multimedias', App\Http\Controllers\Backend\MultimediaController::class);
+});
+
+Route::group(['prefix' => 'backend', 'as' => 'backend.'],function () {
+    Route::resource('horario-expediente', App\Http\Controllers\Backend\WorkingHourController::class);
 });

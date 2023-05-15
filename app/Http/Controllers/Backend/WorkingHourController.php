@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Requests\WorkingHour\WorkingHourRequest;
 use App\Models\WorkingHour;
-use Illuminate\Http\Request;
 
 class WorkingHourController extends AdminController
 {
@@ -13,7 +12,7 @@ class WorkingHourController extends AdminController
      */
     public function index()
     {
-        $workingHours = WorkingHour::simplePaginate(5);
+        $workingHours = WorkingHour::with('employees')->simplePaginate(5);
         $workingHoursCount = WorkingHour::count();
         return view('backend.working-hours.index', compact('workingHours', 'workingHoursCount'));
     }
@@ -35,7 +34,7 @@ class WorkingHourController extends AdminController
         $data = $request->all();
         $workingHour = WorkingHour::create($data);
 
-        return redirect('/backend/horario-expediente')->with("message", "Hora de expediente inserida com sucesso!");
+        return redirect('/backend/horario-expediente')->with("message", "Horário de expediente inserida com sucesso!");
     }
 
     /**
@@ -43,30 +42,36 @@ class WorkingHourController extends AdminController
      */
     public function show(WorkingHour $workingHour)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(WorkingHour $workingHour)
+    public function edit(string $id)
     {
-        //
+        $workingHour = WorkingHour::findOrFail($id);
+        return view('backend.working-hours.edit', compact('workingHour'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, WorkingHour $workingHour)
+    public function update(WorkingHourRequest $request, string $id)
     {
-        //
+        $workingHour = WorkingHour::findOrFail($id);
+        $workingHour->update($request->all());
+
+        return redirect('/backend/horario-expediente')->with("message", "Horário de expediente actualizado com sucesso!");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(WorkingHour $workingHour)
+    public function destroy(string $id)
     {
-        //
+        $workingHour = WorkingHour::findOrFail($id);
+        $workingHour->delete();
+
+        return redirect("/backend/horario-expediente")->with("message", "Horário de expediente foi excluído com succeso!");
     }
 }

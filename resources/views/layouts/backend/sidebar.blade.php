@@ -34,6 +34,12 @@
                 </a>
             </li>
 
+            <li class="sidebar-item {{request()->route()->getName() == 'backend.horario-expediente.index' || request()->route()->getName() == 'backend.horario-expediente.index' || request()->route()->getName() == 'backend.horario-expediente.index'? 'active-yellow':''}}">
+                <a class="sidebar-link" href="{{route('backend.horario-expediente.index')}}">
+                    <i class="align-middle" data-feather="clock"></i> <span class="align-middle">Horário de Expediente</span>
+                </a>
+            </li>
+
             <li class="sidebar-item {{request()->route()->getName() == 'backend.blog.index' || request()->route()->getName() == 'backend.blog.edit' || request()->route()->getName() == 'backend.blog.create' || request()->route()->getName() == 'backend.blog.show' ? 'active-yellow':''}}">
                 <a class="sidebar-link" href="{{route('backend.blog.index')}}">
                     <i class="align-middle" data-feather="folder"></i> <span class="align-middle">Blog</span>
