@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Requests\User\ChangePasswordRequest;
 use App\Http\Requests\User\UserUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends AdminController
@@ -13,7 +14,8 @@ class HomeController extends AdminController
      */
     public function index()
     {
-        return view('backend.home.index');
+        $usersCounts=User::count();
+        return view('backend.home.index',compact('usersCounts'));
     }
 
     /**

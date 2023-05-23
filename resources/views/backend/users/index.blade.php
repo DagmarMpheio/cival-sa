@@ -27,6 +27,7 @@
                                 <th>#</th>
                                 <th>Nome</th>
                                 <th class="d-none d-xl-table-cell">Email</th>
+                                <th class="d-none d-xl-table-cell">Cargo</th>
                                 <th class="d-none d-xl-table-cell">Telefone</th>
                                 <th class="d-none d-xl-table-cell">Endereço</th>
                                 <th colspan="2">Acções</th>
@@ -41,6 +42,7 @@
                                     <td>{{ $counter++ }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td class="d-none d-xl-table-cell">{{ $user->email }}</td>
+                                    <td class="d-none d-xl-table-cell">{{$user->roles->first()->display_name}}</td>
                                     <td class="d-none d-xl-table-cell">{{ $user->telefone }}</td>
                                     <td class="d-none d-xl-table-cell">{{ $user->endereco }}</td>
                                     <td>

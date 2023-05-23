@@ -200,6 +200,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         GrahamCampbell\Markdown\MarkdownServiceProvider::class, //markdown
+        Laratrust\LaratrustServiceProvider::class, //laratrust
+        App\Providers\ComposerServiceProvider::class,//compoer views
     
 
     ],
@@ -223,7 +225,8 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,//markdown
+        'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class, //markdown
+        'LaraTrust' => Laratrust\LaratrustFacade::class,//laratrust
     ])->toArray(),
 
 ];

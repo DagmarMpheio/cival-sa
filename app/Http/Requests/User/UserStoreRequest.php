@@ -28,6 +28,7 @@ class UserStoreRequest extends FormRequest
             'telefone' => ['required', 'string'],
             'endereco' => ['required', 'string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'slug' => 'required|unique:users',
         ];
     }
 }

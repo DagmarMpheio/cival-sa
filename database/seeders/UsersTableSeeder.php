@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
     {
         //reset a tabela users
         //DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        DB::table('users')->truncate(); //apagar todos os dados da tabela
+        //DB::table('users')->truncate(); //apagar todos os dados da tabela
 
         $faker = Factory::create(); //dados falsos(aleatorios)
 
@@ -29,6 +29,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Dagmar Mpheio',
                 'genero'=>'Masculino',
                 'password' => bcrypt('12345678'),
+                'slug' => 'dagmar-mpheio',
                 'created_at' => now(),
                 'updated_at' => now(),
                 'bio' => $faker->text(rand(250, 300))
@@ -40,6 +41,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Jane Doe',
                 'genero'=>'Femenino',
                 'password' => bcrypt('secret00'),
+                'slug' => 'jane-doe',
                 'created_at' => now(),
                 'updated_at' => now(),
                 'bio' => $faker->text(rand(250, 300))
@@ -51,6 +53,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Ana Miguel',
                 'genero'=>'Femenino',
                 'password' => bcrypt('secret00'),
+                'slug' => 'ana-miguel',
                 'created_at' => now(),
                 'updated_at' => now(),
                 'bio' => $faker->text(rand(250, 300))

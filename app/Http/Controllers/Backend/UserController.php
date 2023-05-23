@@ -41,8 +41,8 @@ class UserController extends AdminController
         $data['password'] = bcrypt($data['password']);
 
         $user = User::create($data);
-        //$user->detachRole($user->role); //retirar a permissao actual
-        //$user->attachRole($request->role); //add a permissao
+        #$user->removeRole($user->role); //retirar a permissao actual
+        $user->addRole($request->role); //add a permissao
 
         return redirect('/backend/users')->with("message", "Novo usuário inserido com sucesso!");
     }
@@ -75,8 +75,8 @@ class UserController extends AdminController
         $user = User::findOrFail($id);
         $user->update($request->all());
 
-        //$user->detachRole($user->role); //retirar a permissao actual
-        //$user->attachRole($request->role); //add a permissao
+        $user->removeRole($user->role); //retirar a permissao actual
+        $user->addRole($request->role); //add a permissao
 
         return redirect('/backend/users')->with("message", "Usuário actualizado com sucesso!");
     }

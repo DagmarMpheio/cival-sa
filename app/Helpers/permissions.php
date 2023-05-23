@@ -26,7 +26,12 @@ function check_user_permissions($request, $actionName = NULL, $id = NULL)
     $classesMap = [
         'Blog' => 'post',
         'Categorias' => 'category',
-        'Users' => 'user'
+        'Users' => 'user',
+        'Agendas' => 'agenda',
+        'Expedientes' => 'expediente',
+        'Faqs' => 'faq',
+        'Files' => 'file',
+        'Servicos' => 'servico',
     ];
 
     //mapa das permissoes

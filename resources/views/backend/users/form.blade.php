@@ -7,127 +7,208 @@
  */
 ?>
 
-<div class="col-xs-9">
-    <div class="box">
-        <!-- /.box-header -->
-        <div class="box-body ">
+@csrf
+<div class="row">
+    <div class="col-12 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                {!! Form::label('name', 'Nome', ['class' => 'card-title mb-0', 'for' => 'name']) !!}
+                <font color="red">*</font>
+            </div>
+            <div class="card-body {{ $errors->has('name') ? ' has-error' : '' }} has-feedback">
+                {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nome', 'autofocus', 'required']) !!}
 
-            @csrf
-            @if(!isset($hideOtherFields))
-                <div class="form-group {{$errors->has('name') ? ' has-error' : ''}} has-feedback">
-                    {!! Form::label('name','Nome') !!}<font color="red">*</font>
-                    {!! Form::text('name',null,['class'=>'form-control']) !!}
-
-                    @if ($errors->has('name'))
-                        <span class="help-block">
-                        <strong>{{ $errors->first('name')}}</strong>
+                @if ($errors->has('name'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('name') }}</strong>
                     </span>
-                    @endif
-                </div>
+                @endif
+            </div>
 
+            <div class="card-header">
+                {!! Form::label('slug', 'Slug', ['class' => 'card-title mb-0', 'for' => 'slug']) !!}
+                <font color="red">*</font>
+            </div>
+            <div class="card-body {{ $errors->has('slug') ? ' has-error' : '' }} has-feedback">
+                {!! Form::text('slug', null, ['class' => 'form-control', 'placeholder' => 'Slug', 'required']) !!}
 
-                <div class="form-group {{$errors->has('email') ? ' has-error' : ''}} has-feedback">
-                    {!! Form::label('email') !!}<font color="red">*</font>
-                    {!! Form::email('email',null,['class'=>'form-control']) !!}
-
-                    @if ($errors->has('email'))
-                        <span class="help-block">
-                        <strong>{{ $errors->first('email')}}</strong>
+                @if ($errors->has('slug'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('slug') }}</strong>
                     </span>
-                    @endif
-                </div>
+                @endif
+            </div>
 
-                {{-- ocultar os campos de password quando estiver a ver o perfil e mostrar botao para alterar senha--}}
-                @if(isset($hidePasswordFields))
-                    <div class="form-group">
-                        <a href="{{url('/change-password')}}" class="btn btn-outline-dark"><i class="fa fa-lock"></i>&nbsp;Alterar
-                            a senha</a>
-                    </div>
+            <div class="card-header">
+                {!! Form::label('email', 'Email', ['class' => 'card-title mb-0', 'for' => 'email']) !!}
+                <font color="red">*</font>
+            </div>
+            <div class="card-body {{ $errors->has('email') ? ' has-error' : '' }} has-feedback">
+                {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email', 'required']) !!}
+
+                @if ($errors->has('email'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="card-header">
+                {!! Form::label('telefone', 'Telefone', ['class' => 'card-title mb-0', 'for' => 'telefone']) !!}
+                <font color="red">*</font>
+            </div>
+            <div class="card-body {{ $errors->has('telefone') ? ' has-error' : '' }} has-feedback">
+                {!! Form::tel('telefone', null, ['class' => 'form-control', 'placeholder' => 'Telefone', 'required']) !!}
+
+                @if ($errors->has('telefone'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('telefone') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="card-header">
+                {!! Form::label('endereco', 'Endereço', ['class' => 'card-title mb-0', 'for' => 'endereco']) !!}
+                <font color="red">*</font>
+            </div>
+            <div class="card-body {{ $errors->has('endereco') ? ' has-error' : '' }} has-feedback">
+                {!! Form::text('endereco', null, ['class' => 'form-control', 'placeholder' => 'Endereço', 'required']) !!}
+
+                @if ($errors->has('endereco'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('endereco') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="card-header">
+                {!! Form::label('role', 'Cargo') !!}<font color="red">*</font>
+            </div>
+
+            <div class="card-body {{ $errors->has('role') ? ' has-error' : '' }} has-feedback">
+                @if ($user->exists && ($user->id == config('cms.default_user_id') || isset($hideRoleDropdown)))
+                    {!! Form::hidden('role', $user->roles->first()->id) !!}
+                    <p class="form-control-static">{{ $user->roles->first()->display_name }}</p>
                 @else
-                    <div class="form-group {{$errors->has('password') ? ' has-error' : ''}} has-feedback">
-                        {!! Form::label('password') !!}<font color="red">*</font>
-                        {!! Form::input('password','password',$user->exists ? $user->password : null,['class'=>'form-control','autocomplete'=>'new-password']) !!}
-                        {{--<input type="password" name="password" class="form-control">--}}
-
-                        @if ($errors->has('password'))
-                            <span class="help-block">
-                        <strong>{{ $errors->first('password')}}</strong>
-                    </span>
-                        @endif
-                    </div>
-
-                    <div class="form-group {{$errors->has('password_confirmation') ? ' has-error' : ''}} has-feedback">
-                        {!! Form::label('password_confirmation','Confirmar a Password') !!}<font color="red">*</font>
-                        {!! Form::input('password','password_confirmation',$user->exists ? $user->password : null,['class'=>'form-control','autocomplete'=>'new-password']) !!}
-                        {{-- {!! Form::password('password_confirmation',['class'=>'form-control','autocomplete'=>'new-password']) !!}--}}
-
-                        @if ($errors->has('password_confirmation'))
-                            <span class="help-block">
-                        <strong>{{ $errors->first('password_confirmation')}}</strong>
-                    </span>
-                        @endif
-                    </div>
+                    {!! Form::select(
+                        'role',
+                        App\Models\Role::pluck('display_name', 'id'),
+                        $user->exists ? $user->roles->first()->id : null,
+                        ['class' => 'form-control', 'placeholder' => 'Escolha um cargo'],
+                    ) !!}
                 @endif
 
-
-                <div class="form-group excerpt">
-                    {!! Form::label('bio','Biografia') !!}
-                    {!! Form::textarea('bio',null,['class'=>'form-control']) !!}
-
-                    @if ($errors->has('bio'))
-                        <span class="help-block">
-                        <strong>{{ $errors->first('bio')}}</strong>
+                @if ($errors->has('role'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('role') }}</strong>
                     </span>
-                    @endif
-                </div>
-
-                {{--alterar a senha--}}
-            @else
-                <div class="form-group {{$errors->has('password-antiga') ? ' has-error' : ''}} has-feedback">
-                    {!! Form::label('password-antiga','Password Antiga') !!}<font color="red">*</font>
-                    {!! Form::input('password','password-antiga',null,['class'=>'form-control','autocomplete'=>'off']) !!}
-                    {{--<input type="password" name="password" class="form-control">--}}
-
-                    @if ($errors->has('password-antiga'))
-                        <span class="help-block">
-                        <strong>{{ $errors->first('password-antiga')}}</strong>
-                    </span>
-                    @endif
-                </div>
-
-                <div class="form-group {{$errors->has('password') ? ' has-error' : ''}} has-feedback">
-                    {!! Form::label('password','Nova Password') !!}<font color="red">*</font>
-                    {!! Form::input('password','password',null,['class'=>'form-control','autocomplete'=>'new-password']) !!}
-                    {{--<input type="password" name="password" class="form-control">--}}
-
-                    @if ($errors->has('password'))
-                        <span class="help-block">
-                        <strong>{{ $errors->first('password')}}</strong>
-                    </span>
-                    @endif
-                </div>
-
-                <div class="form-group {{$errors->has('password_confirmation') ? ' has-error' : ''}} has-feedback">
-                    {!! Form::label('password_confirmation','Confirmar a Password') !!}<font color="red">*</font>
-                    {!! Form::input('password','password_confirmation',null,['class'=>'form-control','autocomplete'=>'new-password']) !!}
-                    {{-- {!! Form::password('password_confirmation',['class'=>'form-control','autocomplete'=>'new-password']) !!}--}}
-
-                    @if ($errors->has('password_confirmation'))
-                        <span class="help-block">
-                        <strong>{{ $errors->first('password_confirmation')}}</strong>
-                    </span>
-                    @endif
-                </div>
-            @endif
-
+                @endif
+            </div>
         </div>
-        <!-- /.box-body -->
 
-        <div class="box-footer">
-            <button type="submit" class="btn btn-primary">{{$user->exists ? 'Actualizar' : 'Salvar'}}</button>
-            <a href="{{route('backend.users.index')}}" class="btn btn-default">Cancelar</a>
-        </div>
     </div>
-    <!-- /.box -->
-</div>
 
+    <div class="col-12 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <label class="card-title mb-0" for="genero">Gênero</label>
+            </div>
+            <div class="card-body {{ $errors->has('genero') ? ' has-error' : '' }} has-feedback">
+                <div>
+                    <label class="form-check" for="generoM">
+                        <input class="form-check-input @error('genero') is-invalid @enderror" type="radio"
+                            value="Masculino" name="genero" id="generoM" checked>
+
+                        <span class="form-check-label">
+                            Masculino
+                        </span>
+                    </label>
+                    <label class="form-check" for="generoF">
+                        <input class="form-check-input @error('genero') is-invalid @enderror" type="radio"
+                            value="Femenino" name="genero" id="generoF">
+
+                        <span class="form-check-label">
+                            Femenino
+                        </span>
+                    </label>
+
+                    @if ($errors->has('genero'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('genero') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                {!! Form::label('password', 'Password', [
+                    'for' => 'password',
+                    'class' => 'card-title mb-0',
+                    'for' => 'password',
+                ]) !!}<font color="red">*</font>
+            </div>
+            <div class="card-body {{ $errors->has('password') ? ' has-error' : '' }} has-feedback">
+                {!! Form::input('password', 'password', $user->exists ? $user->password : null, [
+                    'id' => 'password',
+                    'class' => 'form-control',
+                    'autocomplete' => 'new-password',
+                    'placeholder' => 'Password',
+                    'required' => 'required',
+                ]) !!}
+
+                @if ($errors->has('password'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="card-header">
+                {!! Form::label('password_confirmation', 'Confirmar a Password', [
+                    'class' => 'card-title mb-0',
+                    'for' => 'password_confirmation',
+                ]) !!}<font color="red">*</font>
+            </div>
+            <div class="card-body {{ $errors->has('password_confirmation') ? ' has-error' : '' }} has-feedback">
+                {!! Form::input('password', 'password_confirmation', $user->exists ? $user->password : null, [
+                    'id' => 'password_confirmation',
+                    'class' => 'form-control',
+                    'autocomplete' => 'new-password',
+                    'placeholder' => 'Password',
+                    'required' => 'required',
+                ]) !!}
+
+
+                @if ($errors->has('password_confirmation'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+
+            <div class="card-header">
+                {!! Form::label('bio', 'Biografia', ['class' => 'card-title mb-0', 'for' => 'bio']) !!}
+            </div>
+            <div class="card-body excerpt {{ $errors->has('genero') ? ' has-error' : '' }} has-feedback">
+                {!! Form::textarea('bio', null, ['class' => 'form-control', 'rows' => '2']) !!}
+
+                @if ($errors->has('bio'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('bio') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+
+        </div>
+
+        <button class="btn btn-primary-yellow" type="submit"><i class="align-middle" data-feather="save"></i>
+            <span class="align-middle">Guardar</span></button>
+        <a class="btn btn-dark text-yellow1" href="{{ route('backend.users.index') }}"><i class="align-middle"
+                data-feather="slash"></i> <span class="align-middle">Cancelar</span></a>
+
+    </div>
+</div>
