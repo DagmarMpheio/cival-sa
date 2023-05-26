@@ -9,8 +9,8 @@
 
         <div class="mb-3">
             <h1 class="h3 d-inline align-middle">Todos Usuários</h1>
-            <a class="badge bg-dark text-yellow1 ms-2 p-2" href="{{route('backend.users.create')}}" title="Novo Usuário">
-               <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle"> Novo Usuário</span>
+            <a class="badge bg-dark text-yellow1 ms-2 p-2" href="{{ route('backend.users.create') }}" title="Novo Usuário">
+                <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle"> Novo Usuário</span>
             </a>
         </div>
 
@@ -35,6 +35,7 @@
                         </thead>
                         @php
                             $counter = 1;
+                            $currentUser = auth()->user();
                         @endphp
                         <tbody>
                             @foreach ($users as $user)
@@ -42,28 +43,35 @@
                                     <td>{{ $counter++ }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td class="d-none d-xl-table-cell">{{ $user->email }}</td>
-                                    <td class="d-none d-xl-table-cell">{{$user->roles->first()->display_name}}</td>
+                                    <td class="d-none d-xl-table-cell">{{ $user->roles->first()->display_name }}</td>
                                     <td class="d-none d-xl-table-cell">{{ $user->telefone }}</td>
                                     <td class="d-none d-xl-table-cell">{{ $user->endereco }}</td>
                                     <td>
-                                        <a href="{{ route('backend.users.edit', $user->id) }}" class="btn btn-primary-yellow"
-                                            title="Editar">
+                                        <a href="{{ route('backend.users.edit', $user->id) }}"
+                                            class="btn btn-primary-yellow" title="Editar">
                                             <i class="align-middle" data-feather="edit"></i> <span
                                                 class="align-middle">Editar</span>
                                         </a>
                                     </td>
+
                                     <td>
-                                        <form class="" style="display:inline"
-                                            action="{{ route('backend.users.destroy', $user->id) }}" method="post">
-                                            @method('delete')
-                                            {{ csrf_field() }}
-                                            <button href="#" class="btn btn-dark text-yellow1" title="Excluir" type="submit"
-                                                onclick="return confirm('Tem a certeza?')">
+                                        @if ($user->id == config('cms.default_user_id') || $user->id == $currentUser->id)
+                                            <button onclick="return false" title="Excluír" type="submit"
+                                                class="btn btn-dark text-yellow1 disabled">
                                                 <i class="align-middle" data-feather="trash"></i> <span
                                                     class="align-middle">Excluir</span>
                                             </button>
-                                        </form>
+                                        @else
+                                            <a href="{{ route('backend.users.confirm', $user->id) }}" title="Excluír"
+                                                type="submit" class="btn btn-dark text-yellow1">
+                                                <i class="fa fa-trash"></i><i class="align-middle" data-feather="trash"></i> <span
+                                                    class="align-middle">Excluir</span>
+                                            </a>
+                                        @endif
                                     </td>
+
+
+
                                 </tr>
                             @endforeach
 

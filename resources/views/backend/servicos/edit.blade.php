@@ -38,7 +38,7 @@
                         </div>
                         <div class="card-body">
                             <input type="number" id="preco" class="form-control @error('preco') is-invalid @enderror"
-                                placeholder="Preço" value="{{ old('preco') }}" name="preco" step="0.01" min="0" autofocus required>
+                                placeholder="Preço" value="{{ $servico->preco }}" name="preco" step="0.01" min="0" autofocus required>
 
                             @error('preco')
                                 <span class="invalid-feedback" role="alert">

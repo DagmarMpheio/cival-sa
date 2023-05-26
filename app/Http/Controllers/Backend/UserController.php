@@ -6,6 +6,8 @@ use App\Http\Requests\User\UserDestroyResquest;
 use App\Http\Requests\User\UserStoreRequest;
 use App\Http\Requests\User\UserUpdateRequest;
 use App\Models\User;
+use App\Models\Servico;
+use App\Models\EmployeeService;
 
 class UserController extends AdminController
 {
@@ -27,8 +29,9 @@ class UserController extends AdminController
     {
         //
         $user = new User();
+        $servicos = Servico::all();
 
-        return view('backend.users.create', compact('user'));
+        return view('backend.users.create', compact('user','servicos'));
     }
 
     /**
@@ -38,13 +41,26 @@ class UserController extends AdminController
     {
         //
         $data = $request->all();
-        $data['password'] = bcrypt($data['password']);
+        //$data['password'] = bcrypt($data['password']);
 
-        $user = User::create($data);
+        //$user = User::create($data);
         #$user->removeRole($user->role); //retirar a permissao actual
-        $user->addRole($request->role); //add a permissao
+        //$user->addRole($request->role); //add a permissao
 
-        return redirect('/backend/users')->with("message", "Novo usuário inserido com sucesso!");
+        //se o admin selecionou os servicos que funcionario eh responsavel 
+        //e se o tipo de usuario eh funcionario, cadastre os dados
+        /* $selectedServices=$data['services'];
+        if ($selectedServices && $data['role']==2){
+            foreach ($selectedServices as $servico_id) {
+                $employeeService = EmployeeService::create([
+                    'employee_id'=>$user->id,
+                    'service_id'=>$servico_id,
+                ]);
+            }
+        }
+ */
+        return dd($data);
+        //return redirect('/backend/users')->with("message", "Novo usuário inserido com sucesso!");
     }
 
     /**
@@ -84,12 +100,12 @@ class UserController extends AdminController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(UserDestroyResquest $resquest, $id)
     {
         //
         $user = User::findOrFail($id);
 
-        /* $deleteOption = $resquest->delete_option;
+        $deleteOption = $resquest->delete_option;
         $selectedUser = $resquest->selected_user;
 
         if ($deleteOption == "delete") {
@@ -99,7 +115,7 @@ class UserController extends AdminController
             $user->post;
         } elseif ($deleteOption == "atribute") {
             $user->posts()->update(['author_id' => $selectedUser]);
-        } */
+        }
         //apagar o usuario
         $user->delete();
 

@@ -15,7 +15,10 @@
                 <font color="red">*</font>
             </div>
             <div class="card-body {{ $errors->has('employee_id') ? ' has-error' : '' }} has-feedback">
-                {!! Form::select('employee_id', App\Models\User::pluck('name', 'id'), null, [
+                {!! Form::select('employee_id', 
+                App\Models\User::whereHas('roles', function($query){
+                    $query->where('id','2');
+                })->pluck('name','id'), null, [
                     'class' => 'form-control',
                     'id' => 'employee_id',
                     'placeholder' => 'Escolha o funcionário',

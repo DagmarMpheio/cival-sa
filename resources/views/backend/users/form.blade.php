@@ -82,7 +82,8 @@
             </div>
 
             <div class="card-header">
-                {!! Form::label('role', 'Cargo') !!}<font color="red">*</font>
+                {!! Form::label('role', 'Cargo',['class' => 'card-title mb-0', 'for' => 'role']) !!}
+                <font color="red">*</font>
             </div>
 
             <div class="card-body {{ $errors->has('role') ? ' has-error' : '' }} has-feedback">
@@ -94,7 +95,7 @@
                         'role',
                         App\Models\Role::pluck('display_name', 'id'),
                         $user->exists ? $user->roles->first()->id : null,
-                        ['class' => 'form-control', 'placeholder' => 'Escolha um cargo'],
+                        ['class' => 'form-control', 'placeholder' => 'Escolha um cargo','required'],
                     ) !!}
                 @endif
 
@@ -104,6 +105,33 @@
                     </span>
                 @endif
             </div>
+
+            {{-- lista dos servicos --}}
+            <div id='lista-servicos'>
+                <div class="card-header">
+                    {!! Form::label('services_label', 'Serviço Prestados',['class' => 'card-title mb-0']) !!}
+                    <font color="red">*</font>
+                </div>
+                <div class="card-body {{ $errors->has('services') ? ' has-error' : '' }} has-feedback">
+                    @foreach ($servicos as $servico)
+                       <label class="form-check form-check-inline" for="{{$servico->id}}">
+                            <input class="form-check-input" type="checkbox" value="{{$servico->id}}" id="{{$servico->id}}" name="services[]">
+                            <span class="form-check-label">
+                               {{ $servico->servico}}
+                            </span>
+                        </label>
+                    @endforeach
+                    
+                    @if ($errors->has('services'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('services') }}</strong>
+                        </span>
+                    @endif
+
+                    
+                </div>
+            </div>
+
         </div>
 
     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Requests\WorkingHour\WorkingHourRequest;
 use App\Models\WorkingHour;
+use App\Models\User;
 
 class WorkingHourController extends AdminController
 {
@@ -23,6 +24,10 @@ class WorkingHourController extends AdminController
     public function create()
     {
         $workingHour = new WorkingHour();
+        /* $funcionarios = User::whereHas('roles', function($query){
+            $query->where('id','2');
+        })->get();
+        return dd($funcionarios); */
         return view('backend.working-hours.create', compact('workingHour'));
     }
 

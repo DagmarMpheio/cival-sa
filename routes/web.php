@@ -32,7 +32,11 @@ Route::put('/update-password', [App\Http\Controllers\Backend\HomeController::cla
 //grupo de rotas -> users
 Route::group(['prefix' => 'backend', 'as' => 'backend.'], function () {
     Route::resource('users', App\Http\Controllers\Backend\UserController::class);
+    //rota para o metodo confirm
+    Route::get('users/confirm/{users}', [App\Http\Controllers\Backend\UserController::class, 'confirm'])->name('users.confirm');
 });
+
+
 
 //grupo de rotas -> faqs
 Route::group(['prefix' => 'backend', 'as' => 'backend.'], function () {
