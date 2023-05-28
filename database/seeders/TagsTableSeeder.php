@@ -15,7 +15,7 @@ class TagsTableSeeder extends Seeder
      */
     public function run(): void
     {
-       //DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
         //apagar tudo da tabela tags
         DB::table('tags')->truncate(); //apagar todos os dados da tabela
         //apagar tudo da tabela post_tag

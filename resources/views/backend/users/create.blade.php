@@ -12,6 +12,7 @@
         <h1 class="h3 mb-3">Novo Usuário</h1>
         {!! Form::model($user, [
             'method' => 'POST',
+            'autocomplete' => 'off',
             'route' => 'backend.users.store',
             'id' => 'user-form',
         ]) !!}
@@ -51,6 +52,12 @@
         $(document).ready(function(){
             //esconder os campos ao carregar a pagina
             $('#lista-servicos').hide();
+
+              //ver o valor do selectbox actual, ao carregar a pagina
+            $selectedValue=$('#role').val();
+            if($selectedValue=='2'){
+                $('#lista-servicos').show();
+            }
 
             //add evento change ao selectbox
             $('#role').change(function(){

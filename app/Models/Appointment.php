@@ -10,7 +10,7 @@ class Appointment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'service_id', 'employee_id', 'date', 'start_time', 'finish_time', 'comments'
+        'service_id', 'employee_id','user_id', 'date', 'start_time', 'finish_time', 'comments'
     ];
 
     public function employee()
@@ -18,8 +18,13 @@ class Appointment extends Model
         return $this->belongsTo(User::class, 'employee_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function service()
     {
-        return $this->belongsTo(Servico::class, 'user_id');
+        return $this->belongsTo(Servico::class, 'service_id');
     }
 }

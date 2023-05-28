@@ -16,7 +16,8 @@ class RolesTableSeeder extends Seeder
     public function run(): void
     {
         //apagar tudo da tabela roles
-        //DB::table('roles')->truncate(); //apagar todos os dados da tabela
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::table('roles')->truncate(); //apagar todos os dados da tabela
 
         //Create Admin role
         $admin = new Role();

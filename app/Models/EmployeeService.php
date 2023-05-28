@@ -12,7 +12,7 @@ class EmployeeService extends Model
     protected $fillable = [
         'employee_id', 'service_id'
     ];
-
+    
     public function service()
     {
         return $this->belongsTo(Servico::class, 'service_id');

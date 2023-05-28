@@ -41,26 +41,29 @@ class UserController extends AdminController
     {
         //
         $data = $request->all();
-        //$data['password'] = bcrypt($data['password']);
+        $data['password'] = bcrypt($data['password']);
 
-        //$user = User::create($data);
-        #$user->removeRole($user->role); //retirar a permissao actual
-        //$user->addRole($request->role); //add a permissao
+        $user = User::create($data);
+        
 
         //se o admin selecionou os servicos que funcionario eh responsavel 
         //e se o tipo de usuario eh funcionario, cadastre os dados
-        /* $selectedServices=$data['services'];
+        $selectedServices=$data['servicos'];
         if ($selectedServices && $data['role']==2){
             foreach ($selectedServices as $servico_id) {
-                $employeeService = EmployeeService::create([
-                    'employee_id'=>$user->id,
-                    'service_id'=>$servico_id,
-                ]);
+                //print("Servico: ".$servico_id);
+                $employeeService=new EmployeeService();
+                $employeeService->employee_id=$user->id;
+                $employeeService->service_id=$servico_id;
+                $employeeService->save();
             }
         }
- */
-        return dd($data);
-        //return redirect('/backend/users')->with("message", "Novo usuário inserido com sucesso!");
+
+        #$user->removeRole($user->role); //retirar a permissao actual
+        $user->addRole($request->role); //add a permissao
+
+        //return dd($data);
+        return redirect('/backend/users')->with("message", "Novo usuário inserido com sucesso!");
     }
 
     /**
@@ -77,9 +80,10 @@ class UserController extends AdminController
     public function edit(string $id)
     {
         //
-        $user = User::findOrFail($id);
+        $user = User::with('employeeServices')->findOrFail($id);
+        $servicos = Servico::all();
 
-        return view('backend.users.edit', compact('user'));
+        return view('backend.users.edit', compact('user', 'servicos'));
     }
 
     /**

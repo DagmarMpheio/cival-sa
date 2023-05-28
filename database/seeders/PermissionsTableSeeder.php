@@ -15,8 +15,9 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
         //apagar tudo da tabela permission
-        //DB::table('permissions')->truncate(); //apagar todos os dados da tabela
+        DB::table('permissions')->truncate(); //apagar todos os dados da tabela
 
         //crud post
         $crudPost = new Permission();
@@ -63,6 +64,11 @@ class PermissionsTableSeeder extends Seeder
         $crudAgenda->name = "crud-agenda";
         $crudAgenda->save();
 
+        //crud agenda
+        $crudFinanca = new Permission();
+        $crudFinanca->name = "crud-financa";
+        $crudFinanca->save();
+
         //crud user
         $crudUser = new Permission();
         $crudUser->name = "crud-user";
@@ -73,8 +79,8 @@ class PermissionsTableSeeder extends Seeder
         $funcionario = Role::whereName('funcionario')->first();
         $utente = Role::whereName('utente')->first();
 
-        $admin->removePermissions([$crudPost, $updateOthersPost, $deleteOthersPost, $crudCategory, $crudUser, $crudFaq, $crudFile, $crudServico, $crudAgenda, $crudHorarioExpediente]);
-        $admin->givePermissions([$crudPost, $updateOthersPost, $deleteOthersPost, $crudCategory, $crudUser, $crudFaq, $crudFile, $crudServico, $crudAgenda, $crudHorarioExpediente]);
+        $admin->removePermissions([$crudPost, $updateOthersPost, $deleteOthersPost, $crudCategory, $crudUser, $crudFaq, $crudFile, $crudServico, $crudAgenda, $crudHorarioExpediente, $crudFinanca]);
+        $admin->givePermissions([$crudPost, $updateOthersPost, $deleteOthersPost, $crudCategory, $crudUser, $crudFaq, $crudFile, $crudServico, $crudAgenda, $crudHorarioExpediente, $crudFinanca]);
 
         $funcionario->removePermissions([$crudPost, $updateOthersPost, $deleteOthersPost, $crudCategory, $crudFaq]);
         $funcionario->givePermissions([$crudPost, $updateOthersPost, $deleteOthersPost, $crudCategory, $crudFaq]);

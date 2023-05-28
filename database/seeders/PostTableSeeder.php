@@ -15,7 +15,7 @@ class PostTableSeeder extends Seeder
     public function run(): void
     {
         //reset a tabela post
-        //DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
         DB::table('posts')->truncate(); //apagar todos os dados da tabela
 
         //gerar 36 posts

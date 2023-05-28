@@ -90,7 +90,7 @@ class User extends Authenticatable implements LaratrustUser
 
     public function appointments()
     {
-        return $this->hasMany(Appointment::class, 'employee_id');
+        return $this->hasMany(Appointment::class, 'user_id');
     }
     
 }

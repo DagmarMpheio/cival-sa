@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('employee_services', function (Blueprint $table) {
             $table->id();
-            $table->integer('employee_id')->unsigned();
-            $table->integer('service_id')->unsigned();
+            $table->unsignedBigInteger('employee_id');
+            $table->unsignedBigInteger('service_id');
 
             $table->foreign('employee_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
+            $table->foreign('service_id')->references('id')->on('servicos')->onDelete('cascade');
             
             $table->timestamps();
 

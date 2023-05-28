@@ -112,19 +112,19 @@
                     {!! Form::label('services_label', 'Serviço Prestados',['class' => 'card-title mb-0']) !!}
                     <font color="red">*</font>
                 </div>
-                <div class="card-body {{ $errors->has('services') ? ' has-error' : '' }} has-feedback">
+                <div class="card-body {{ $errors->has('servicos') ? ' has-error' : '' }} has-feedback">
                     @foreach ($servicos as $servico)
                        <label class="form-check form-check-inline" for="{{$servico->id}}">
-                            <input class="form-check-input" type="checkbox" value="{{$servico->id}}" id="{{$servico->id}}" name="services[]">
+                            <input class="form-check-input" type="checkbox" value="{{$servico->id}}" id="{{$servico->id}}" name="servicos[]">
                             <span class="form-check-label">
                                {{ $servico->servico}}
                             </span>
                         </label>
                     @endforeach
                     
-                    @if ($errors->has('services'))
+                    @if ($errors->has('servicos'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('services') }}</strong>
+                            <strong>{{ $errors->first('servicos') }}</strong>
                         </span>
                     @endif
 

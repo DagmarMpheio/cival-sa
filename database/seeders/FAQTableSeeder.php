@@ -14,7 +14,7 @@ class FAQTableSeeder extends Seeder
      */
     public function run(): void
     {
-       //DB::statement('SET FOREIGN_KEY_CHECKS=0');
+       DB::statement('SET FOREIGN_KEY_CHECKS=0');
         DB::table('faqs')->truncate(); //apagar todos os dados da tabela
 
         $faker = Factory::create(); //dados falsos(aleatorios)
@@ -23,19 +23,19 @@ class FAQTableSeeder extends Seeder
         DB::table('faqs')->insert([
             [
                 'questao' => $faker->paragraph() . "?",
-                'resposta' => $faker->text(rand(400, 300)),
+                'resposta' => $faker->text(rand(100, 50)),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'questao' => $faker->paragraph() . "?",
-                'resposta' => $faker->text(rand(400, 300)),
+                'resposta' => $faker->text(rand(100, 50)),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'questao' => $faker->paragraph() . "?",
-                'resposta' => $faker->text(rand(400, 300)),
+                'resposta' => $faker->text(rand(100, 50)),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
