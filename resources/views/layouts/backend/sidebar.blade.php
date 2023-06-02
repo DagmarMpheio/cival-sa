@@ -40,7 +40,7 @@
 
             @if (check_user_permissions(request(), 'Agendas@index'))
                 <li
-                    class="sidebar-item {{ request()->route()->getName() == 'backend.agendas.index' ||request()->route()->getName() == 'backend.agendas.create' ||request()->route()->getName() == 'backend.agendas.edit'? 'active-yellow': '' }}">
+                    class="sidebar-item {{ request()->route()->getName() == 'backend.agendas.index' ||request()->route()->getName() == 'backend.agendas.create' || request()->route()->getName() == 'backend.agendas.edit' || request()->route()->getName() == 'backend.agendas.showCalendar' ? 'active-yellow': '' }}">
                     <a class="sidebar-link" href="{{ route('backend.agendas.index') }}">
                         <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Agendas</span>
                     </a>

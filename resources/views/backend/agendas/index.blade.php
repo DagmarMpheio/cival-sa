@@ -24,13 +24,13 @@
                         @endif
                     @endforeach
                     {!! implode(' | ', $links) !!}
+                    |
                 @endif
-                |
-                <a class="{{request()->route()->getName() == 'backend.agendas.calendario'? 'active-yellow': ''}}" href="{{ route('backend.agendas.calendario') }}"
-                title="Calendário de Agendamentos">
-                <i class="align-middle" data-feather="calendar"></i> <span class="align-middle"> Calendário de
-                    Agendamentos</span>
-            </a>
+                <a class="{{ request()->route()->getName() == 'backend.agendas.showCalendar'? 'selected-status': '' }}"
+                    href="{{ route('backend.agendas.showCalendar') }}" title="Calendário de Agendamentos">
+                    <i class="align-middle" data-feather="calendar"></i> <span class="align-middle"> Calendário de
+                        Agendamentos</span>
+                </a>
             </div>
         </div>
 

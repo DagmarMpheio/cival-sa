@@ -55,9 +55,21 @@ class AppointmentController extends AdminController
     /**
      * Display the specified resource.
      */
+    //public function show(Appointment $appointment)
     public function show(Appointment $appointment)
     {
         //
+    }
+
+    public function showCalendar(Request $request)
+    {
+        //
+
+        //$agendas = Appointment::with(['employee', 'service'])->where('user_id', $request->user()->id)->get();
+		$agendas = Appointment::all();
+        $agendasCount = Appointment::with(['employee', 'service'])->where('user_id', $request->user()->id)->count();
+
+        return view('backend.agendas.calendar', compact('agendas', 'agendasCount'));
     }
 
     /**
@@ -101,11 +113,11 @@ class AppointmentController extends AdminController
         ];
     }
 
-    public function agendaCalendar(Request $request)
+    /* public function agendaCalendar()
     {
-        $agendas = Appointment::with(['employee', 'service'])->where('user_id', $request->user()->id)->simplePaginate(5);
-        $agendasCount = Appointment::with(['employee', 'service'])->where('user_id', $request->user()->id)->count();
+        $agendas = Appointment::with(['employee', 'service'])->simplePaginate(5);
+        $agendasCount = Appointment::with(['employee', 'service'])->count();
 
-        return view('backend.agendas.calendar', compact('agendas', 'agendasCount'));
-    }
+        return view('backend.agendas.index', compact('agendas', 'agendasCount'));
+    } */
 }

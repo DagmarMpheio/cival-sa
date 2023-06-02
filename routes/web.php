@@ -75,5 +75,5 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.'],function () {
 
 Route::group(['prefix' => 'backend', 'as' => 'backend.'], function () {
     Route::resource('agendas', App\Http\Controllers\Backend\AppointmentController::class);
-    Route::get('agendas/calendar', [App\Http\Controllers\Backend\AppointmentController::class, 'agendaCalendar'])->name('agendas.calendario');
+    Route::get('agendas-calendario', [App\Http\Controllers\Backend\AppointmentController::class, 'showCalendar'])->name('agendas.showCalendar');
 });
