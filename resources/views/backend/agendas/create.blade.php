@@ -1,11 +1,11 @@
 @extends('layouts.backend.main')
 
-@section('title', 'Nova FAQ')
+@section('title', 'Novo Agendamento')
 
 @section('content')
     <div class="container-fluid p-0">
 
-        <h1 class="h3 mb-3">Novo Usuário</h1>
+        <h1 class="h3 mb-3">Novo Agendamento</h1>
 
         <form action="{{ route('backend.agendas.store') }}" method="post">
             @csrf
@@ -115,6 +115,9 @@
                                     <strong>{{ $errors->first('comments') }}</strong>
                                 </span>
                             @endif
+
+
+                            <input type="hidden" value="{{Auth::id()}}" name="user_id">
                         </div>
                     </div>
 

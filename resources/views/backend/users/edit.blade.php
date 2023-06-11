@@ -13,6 +13,8 @@
             'id' => 'user-form',
         ]) !!}
 
+        {{-- <p>{{$user->roles->first()->id}}</p> --}}
+
         @include('backend.users.form')
         {!! Form::close() !!}
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Requests\User\ChangePasswordRequest;
 use App\Http\Requests\User\UserUpdateRequest;
+use App\Models\Appointment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,14 @@ class HomeController extends AdminController
      */
     public function index()
     {
-        $usersCounts=User::count();
-        return view('backend.home.index',compact('usersCounts'));
+        $usersCount = User::count();
+        $agendasCount = Appointment::count();
+        $inpencoesCount = Appointment::whereHas('service', function ($query) {
+            $query->where('servico', '=', 'Inspecção');
+        })->count();
+        
+        return view('backend.home.index', compact('usersCount', 'agendasCount', 'inpencoesCount'));
+        //return dd($inpencoesCount);
     }
 
     /**
@@ -50,7 +57,7 @@ class HomeController extends AdminController
      */
     public function edit(Request $request)
     {
-        
+
         $user = $request->user();
 
         return view('backend.home.edit-profile', compact('user'));

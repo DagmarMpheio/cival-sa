@@ -10,7 +10,7 @@ class Appointment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'service_id', 'employee_id','user_id', 'date', 'start_time', 'finish_time', 'comments'
+        'service_id', 'employee_id', 'user_id', 'date', 'start_time', 'finish_time', 'comments'
     ];
 
     public function employee()

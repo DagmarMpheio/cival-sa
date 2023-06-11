@@ -80,10 +80,11 @@ class UserController extends AdminController
     public function edit(string $id)
     {
         //
-        $user = User::with('employeeServices')->findOrFail($id);
+        $user = User::with('employeeServices','roles')->findOrFail($id);
         $servicos = Servico::all();
 
         return view('backend.users.edit', compact('user', 'servicos'));
+        //return dd($user);
     }
 
     /**
@@ -95,10 +96,13 @@ class UserController extends AdminController
         $user = User::findOrFail($id);
         $user->update($request->all());
 
-        $user->removeRole($user->role); //retirar a permissao actual
+        $user->removeRole($user->roles->first()->id); //retirar a permissao actual
         $user->addRole($request->role); //add a permissao
 
         return redirect('/backend/users')->with("message", "Usuário actualizado com sucesso!");
+
+        //return dd($user->roles->first()->id);
+        
     }
 
     /**

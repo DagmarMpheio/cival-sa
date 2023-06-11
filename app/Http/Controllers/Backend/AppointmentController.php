@@ -46,8 +46,9 @@ class AppointmentController extends AdminController
     public function store(AppointmentRequest $request)
     {
         $data = $request->all();
-        $request->user()->appointments()->create($data);
-        //Appointment::create($data);
+        //$request->user()->appointments()->create($data);
+        Appointment::create($data);
+        //return dd($request->all());
 
         return redirect('/backend/agendas')->with("message", "Novo agendamento inserido com sucesso!");
     }

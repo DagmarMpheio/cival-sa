@@ -29,7 +29,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h1 class="mt-1 mb-3">2.382</h1>
+                                    <h1 class="mt-1 mb-3">{{$inpencoesCount}}</h1>
                                     <div class="mb-0">
                                         <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
                                         <span class="text-muted">Na semana passada</span>
@@ -50,7 +50,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h1 class="mt-1 mb-3">{{$usersCounts}}</h1>
+                                    <h1 class="mt-1 mb-3">{{$usersCount}}</h1>
                                     <div class="mb-0">
                                         <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
                                         <span class="text-muted">Na semana passada</span>
@@ -92,7 +92,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h1 class="mt-1 mb-3">64</h1>
+                                    <h1 class="mt-1 mb-3">{{$agendasCount}}</h1>
                                     <div class="mb-0">
                                         <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.25% </span>
                                         <span class="text-muted">Na semana passada</span>

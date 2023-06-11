@@ -22,21 +22,21 @@ class ServicoTableSeeder extends Seeder
         //gerar 3 servicos
         DB::table('servicos')->insert([
             [
-                'servico' => $faker->text(10),
+                'servico' => 'Inspecção',
                 'descricao' => $faker->text(rand(100, 50)),
                 'preco' => $faker->randomFloat(2,100),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'servico' => $faker->text(10),
+                'servico' => 'Atribuição de Matrícula',
                 'descricao' => $faker->text(rand(100, 50)),
                 'preco' => $faker->randomFloat(2,100),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'servico' => $faker->text(10),
+                'servico' => 'Películas',
                 'descricao' => $faker->text(rand(100, 50)),
                 'preco' => $faker->randomFloat(2,100),
                 'created_at' => now(),
