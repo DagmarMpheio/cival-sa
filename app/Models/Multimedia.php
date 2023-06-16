@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Multimedia extends Model
 {
     use HasFactory;
-    protected $fillable = ['ficheiro', 'tipo','descricao'];
+    protected $fillable = ['ficheiro', 'tipo','doc_type','nome_ficheiro','descricao'];
 
     //formatar a o campo created_At
     public function dateFormatted($showTimes = false)

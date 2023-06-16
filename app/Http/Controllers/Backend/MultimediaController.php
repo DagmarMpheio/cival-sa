@@ -64,11 +64,14 @@ class MultimediaController extends AdminController
     public function store(Request $request)
     {
         $this->validate($request, [
+            'nome_ficheiro' => 'required',
             'ficheiro' => 'file|mimes:pdf,jpeg,png,jpg,gif,svg,mp3,wav,m4a,mp4,webm,3gp,mov,flv,avi,wmv,ts,mkv|max:6120',
-            'descricao' => 'required'
         ]);
 
         $data = $this->handleResquest($request);
+        if ($data['doc_type'] == 'Seleccione o tipo de documento') {
+            $data['doc_type'] = null;
+        }
 
         $multimedia = Multimedia::create($data);
 
@@ -102,8 +105,8 @@ class MultimediaController extends AdminController
         $multimedia = Multimedia::findOrFail($id);
 
         $this->validate($request, [
+            'nome_ficheiro' => 'required',
             'ficheiro' => 'file|mimes:pdf,jpeg,png,jpg,gif,svg,mp3,wav,m4a,mp4,webm,3gp,mov,flv,avi,wmv,ts,mkv|max:6120',
-            'descricao' => 'required'
         ]);
 
         $oldFile = $multimedia->ficheiro;
@@ -197,16 +200,19 @@ class MultimediaController extends AdminController
                 $imgName = $this->handleResquestImage($request);
                 $dados['tipo'] = 'Imagem';
                 $dados['ficheiro'] = $imgName;
+                $dados['doc_type'] == " ";
             }
             if ($extension && ($extension == 'mp3' || $extension == 'acc' || $extension == 'm4a')) {
                 $audioName = $this->handleResquestAudio($request);
                 $dados['tipo'] = 'Aúdio';
                 $dados['ficheiro'] = $audioName;
+                $dados['doc_type'] == " ";
             }
             if ($extension && ($extension == 'mp4' || $extension == 'webm' || $extension == '3gp' || $extension == 'mov' || $extension == 'flv' || $extension == 'avi' || $extension == 'wmv' || $extension == 'ts' || $extension == 'mkv')) {
                 $videoName = $this->handleResquestVideo($request);
                 $dados['tipo'] = 'Vídeo';
                 $dados['ficheiro'] = $videoName;
+                $dados['doc_type'] == " ";
             }
             return $dados;
         }
@@ -219,7 +225,8 @@ class MultimediaController extends AdminController
             $image = $request->file('ficheiro'); //pega o image
             $extension = $image->getClientOriginalExtension();
             /*nome temporarrio */
-            $fileName = time() . '.' . $extension; //pegar o nome e a extensao do
+            //$fileName = time() . '.' . $extension; //pegar o nome e a extensao do
+            $fileName = $request['nome_ficheiro'] . '.' . $extension; //pegar o nome e a extensao do
 
             $imageResize = Image::make($image->getRealPath())->orientate();
             $imageResize->resize(800, 450);
@@ -248,7 +255,8 @@ class MultimediaController extends AdminController
         /*se o usuario se inseriu um pdf, faça:*/
         if ($request->hasFile('ficheiro')) {
             $pdf = $request->file('ficheiro'); //pega o ficheiro
-            $fileName = time() . '.' . $pdf->getClientOriginalExtension(); //pegar o nome e a extensao do ficheiro e dar um nome temporario
+            //$fileName = time() . '.' . $pdf->getClientOriginalExtension(); //pegar o nome e a extensao do ficheiro e dar um nome temporario
+            $fileName = $request['nome_ficheiro'] . '.' . $pdf->getClientOriginalExtension(); //pegar o nome e a extensao do ficheiro e dar um nome temporario
 
             $destination = $this->uploadPathDoc; //pasta destino do pdf
             $pdf->move($destination, $fileName); //mover o pdf
@@ -262,7 +270,8 @@ class MultimediaController extends AdminController
         /*se o usuario se inseriu um audio, faça:*/
         if ($request->hasFile('ficheiro')) {
             $audio = $request->file('ficheiro'); //pega o ficheiro
-            $fileName = time() . '.' . $audio->getClientOriginalExtension(); //pegar o nome e a extensao do ficheiro e dar um nome temporario
+            //$fileName = time() . '.' . $audio->getClientOriginalExtension(); //pegar o nome e a extensao do ficheiro e dar um nome temporario
+            $fileName = $request['nome_ficheiro']  . '.' . $audio->getClientOriginalExtension(); //pegar o nome e a extensao do ficheiro e dar um nome temporario
 
             $destination = $this->uploadPathAudio; //pasta destino do audio
             $audio->move($destination, $fileName); //mover o audio
@@ -276,7 +285,8 @@ class MultimediaController extends AdminController
         /*se o usuario se inseriu um video, faça:*/
         if ($request->hasFile('ficheiro')) {
             $video = $request->file('ficheiro'); //pega o ficheiro
-            $fileName = time() . '.' . $video->getClientOriginalExtension(); //pegar o nome e a extensao do ficheiro e dar um nome temporario
+            //$fileName = time() . '.' . $video->getClientOriginalExtension(); //pegar o nome e a extensao do ficheiro e dar um nome temporario
+            $fileName = $request['nome_ficheiro'] . '.' . $video->getClientOriginalExtension(); //pegar o nome e a extensao do ficheiro e dar um nome temporario
 
             $destination = $this->uploadPathVideo; //pasta destino do video
             $video->move($destination, $fileName); //mover o video

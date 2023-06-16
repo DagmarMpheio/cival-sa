@@ -32,7 +32,8 @@ function check_user_permissions($request, $actionName = NULL, $id = NULL)
         'Faqs' => 'faq',
         'Files' => 'file',
         'Servicos' => 'servico',
-        'Financas' => 'financas',
+        'Financas' => 'financa',
+        'Mensagens' => 'mensagem',
     ];
 
     //mapa das permissoes

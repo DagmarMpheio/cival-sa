@@ -69,6 +69,11 @@ class PermissionsTableSeeder extends Seeder
         $crudFinanca->name = "crud-financa";
         $crudFinanca->save();
 
+        //crud mensagem
+        $crudMensagem = new Permission();
+        $crudMensagem->name = "crud-mensagem";
+        $crudMensagem->save();
+
         //crud user
         $crudUser = new Permission();
         $crudUser->name = "crud-user";
@@ -79,11 +84,11 @@ class PermissionsTableSeeder extends Seeder
         $funcionario = Role::whereName('funcionario')->first();
         $utente = Role::whereName('utente')->first();
 
-        $admin->removePermissions([$crudPost, $updateOthersPost, $deleteOthersPost, $crudCategory, $crudUser, $crudFaq, $crudFile, $crudServico, $crudAgenda, $crudHorarioExpediente, $crudFinanca]);
-        $admin->givePermissions([$crudPost, $updateOthersPost, $deleteOthersPost, $crudCategory, $crudUser, $crudFaq, $crudFile, $crudServico, $crudAgenda, $crudHorarioExpediente, $crudFinanca]);
+        $admin->removePermissions([$crudPost, $updateOthersPost, $deleteOthersPost, $crudCategory, $crudUser, $crudFaq, $crudFile, $crudServico, $crudAgenda, $crudHorarioExpediente, $crudFinanca, $crudMensagem]);
+        $admin->givePermissions([$crudPost, $updateOthersPost, $deleteOthersPost, $crudCategory, $crudUser, $crudFaq, $crudFile, $crudServico, $crudAgenda, $crudHorarioExpediente, $crudFinanca, $crudMensagem]);
 
-        $funcionario->removePermissions([$crudPost, $updateOthersPost, $deleteOthersPost, $crudCategory, $crudFaq]);
-        $funcionario->givePermissions([$crudPost, $updateOthersPost, $deleteOthersPost, $crudCategory, $crudFaq]);
+        $funcionario->removePermissions([$crudPost, $updateOthersPost, $deleteOthersPost, $crudCategory, $crudFaq, $crudMensagem]);
+        $funcionario->givePermissions([$crudPost, $updateOthersPost, $deleteOthersPost, $crudCategory, $crudFaq, $crudMensagem]);
 
         $utente->removePermission($crudAgenda);
         $utente->givePermission($crudAgenda);

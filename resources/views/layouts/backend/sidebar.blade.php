@@ -94,6 +94,15 @@
                 </li>
             @endif
 
+            @if (check_user_permissions(request(), 'Mensagens@index'))
+                <li
+                    class="sidebar-item {{ request()->route()->getName() == 'backend.mensagens.index' ||request()->route()->getName() == 'backend.mensagens.edit' ||request()->route()->getName() == 'backend.mensagens.create'? 'active-yellow': '' }}">
+                    <a class="sidebar-link" href="{{ route('backend.mensagens.index') }}">
+                        <i class="align-middle" data-feather="message-circle"></i> <span class="align-middle">Mensagens</span>
+                    </a>
+                </li>
+            @endif
+
             @if (check_user_permissions(request(), 'Faqs@index'))
                 <li
                     class="sidebar-item {{ request()->route()->getName() == 'backend.faqs.index' ||request()->route()->getName() == 'backend.faqs.edit' ||request()->route()->getName() == 'backend.faqs.create'? 'active-yellow': '' }}">

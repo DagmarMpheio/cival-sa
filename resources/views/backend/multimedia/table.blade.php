@@ -18,7 +18,7 @@
         @foreach ($multimedias as $multimedia)
             <tr>
                 <td>{{ $counter++ }}</td>
-                <td>{{ $multimedia->ficheiro }}</td>
+                <td>{{ $multimedia->nome_ficheiro }}</td>
                 <td>{{ $multimedia->descricao }}</td>
                 <td>{{ $multimedia->tipo }}</td>
                 <td>

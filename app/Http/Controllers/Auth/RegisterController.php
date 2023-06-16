@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Faker\Factory;
 
 class RegisterController extends Controller
 {
@@ -52,6 +54,9 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'endereco' => ['required'],
+            'telefone' => ['required'],
+            'genero' => ['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -64,10 +69,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $faker = Factory::create(); //dados falsos(aleatorios)
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'endereco' => $data['endereco'],
+            'telefone' => $data['telefone'],
+            'genero' => $data['genero'],
+            'slug' => Str::slug($data['name'].'-'.$faker->numberBetween(0,999999999)),
             'password' => Hash::make($data['password']),
         ]);
+
+        $user->addRole(3); //add a permissao de utente
+
+        return $user;
     }
 }

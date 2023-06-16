@@ -73,6 +73,12 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.'],function () {
     Route::resource('horario-expediente', App\Http\Controllers\Backend\WorkingHourController::class);
 });
 
+
+//grupo de rotas -> mensagens
+Route::group(['prefix' => 'backend', 'as' => 'backend.'],function () {
+    Route::resource('mensagens', App\Http\Controllers\Backend\MensagemController::class);
+});
+
 Route::group(['prefix' => 'backend', 'as' => 'backend.'], function () {
     Route::resource('agendas', App\Http\Controllers\Backend\AppointmentController::class);
     Route::get('agendas-calendario', [App\Http\Controllers\Backend\AppointmentController::class, 'showCalendar'])->name('agendas.showCalendar');
