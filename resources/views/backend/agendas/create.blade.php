@@ -31,16 +31,16 @@
                         </div>
 
                         <div class="card-header">
-                            <label class="card-title mb-0" for="date">Data</label>
+                            <label class="card-title mb-0" for="data">Data</label>
                             <font color="red">*</font>
                         </div>
-                        <div class="card-body {{ $errors->has('date') ? ' has-error' : '' }} has-feedback">
-                            <input type="date" id="date" class="form-control" placeholder="Data"
-                                value="{{ old('date') }}" name="date" required>
+                        <div class="card-body {{ $errors->has('data') ? ' has-error' : '' }} has-feedback">
+                            <input type="date" id="data" class="form-control" placeholder="Data"
+                                value="{{ old('data') }}" name="data" required>
 
-                            @if ($errors->has('date'))
+                            @if ($errors->has('data'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('date') }}</strong>
+                                    <strong>{{ $errors->first('data') }}</strong>
                                 </span>
                             @endif
                         </div>

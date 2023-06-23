@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('employee_id');
             $table->unsignedBigInteger('service_id');
             $table->unsignedBigInteger('user_id');
-            $table->date('date');
+            $table->date('data');
             $table->time('start_time')->format('h:i');
             $table->time('finish_time')->format('h:i');;
             $table->string('comments');

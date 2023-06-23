@@ -49,6 +49,12 @@ class CategoriasTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
+            [
+                'title' => 'Anúncios',
+                'slug' => 'anuncios',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
         ]);
 
         //actualizar os dados da tabela posts

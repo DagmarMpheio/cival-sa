@@ -67,8 +67,8 @@
                         @foreach ($agendas as $agenda)
                         {
                             title: '{{ $agenda->service->servico }}',
-                            start: '{{ $agenda->date }}T{{ $agenda->start_time }}',
-                            end: '{{ $agenda->date }}T{{ $agenda->finish_time }}',
+                            start: '{{ $agenda->data }}T{{ $agenda->start_time }}',
+                            end: '{{ $agenda->data }}T{{ $agenda->finish_time }}',
                         },
                         @endforeach
                         

@@ -62,7 +62,7 @@
                                 <tr>
                                     <td>{{ $counter++ }}</td>
                                     <td>{{ $agenda->service->servico }}</td>
-                                    <td>{{ $agenda->date }}</td>
+                                    <td>{{ $agenda->data }}</td>
                                     <td>{{ $agenda->employee->name }}</td>
                                     <td>{{ $agenda->start_time }}</td>
                                     <td>{{ $agenda->finish_time }}</td>

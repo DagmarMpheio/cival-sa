@@ -10,7 +10,7 @@ class Appointment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'service_id', 'employee_id', 'user_id', 'date', 'start_time', 'finish_time', 'comments'
+        'service_id', 'employee_id', 'user_id', 'data', 'start_time', 'finish_time', 'comments'
     ];
 
     public function employee()
@@ -26,5 +26,21 @@ class Appointment extends Model
     public function service()
     {
         return $this->belongsTo(Servico::class, 'service_id');
+    }
+
+    public function getDateAttribute($value)
+    {
+        //return $this->created_at->diffForHumans();//formatacao das datas//
+        return is_null($this->created_at) ? '' : $this->created_at->diffForHumans(); //formatacao das datas
+    }
+
+
+    //formatar a o campo created_At
+    public function dateFormatted($showTimes = false)
+    {
+        $format = "d/m/Y";
+        if ($showTimes)
+            $format = $format . " H:s:i";
+        return $this->created_at->format($format);
     }
 }

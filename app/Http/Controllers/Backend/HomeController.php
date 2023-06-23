@@ -7,6 +7,8 @@ use App\Http\Requests\User\UserUpdateRequest;
 use App\Models\Appointment;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends AdminController
 {
@@ -48,8 +50,9 @@ class HomeController extends AdminController
     {
         //
         $user = $request->user();
+        $agendamentos = Appointment::with(['employee', 'service','user'])->get();
 
-        return view('backend.home.profile', compact('user'));
+        return view('backend.home.profile', compact('user','agendamentos'));
     }
 
     /**
@@ -68,8 +71,16 @@ class HomeController extends AdminController
      */
     public function update(UserUpdateRequest $request)
     {
-        $user = $request->user();
+        /* $user = $request->user();
         $user->update($request->all());
+ */
+        $request->user()->fill($request->validated());
+
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
+        }
+
+        $request->user()->save();
 
         return redirect()->back()->with("message", "Conta actualizada com sucesso!");
     }
@@ -106,8 +117,21 @@ class HomeController extends AdminController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $request->validateWithBag('userDeletion', [
+            'password' => ['required', 'current_password'],
+        ]);
+
+        $user = $request->user();
+
+        Auth::logout();
+
+        $user->delete();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return Redirect::to('/');
     }
 }
