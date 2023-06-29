@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\WorkingHour;
 use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -59,5 +60,13 @@ class UsersTableSeeder extends Seeder
                 'bio' => $faker->text(rand(250, 300))
             ]
         ]);
+
+        //working hour
+        $horarioExpediente = new WorkingHour();
+        $horarioExpediente->employee_id = 2;
+        $horarioExpediente->date = date("Y/m/d");
+        $horarioExpediente->start_time = '08:00:00';
+        $horarioExpediente->finish_time = '15:00:00';
+        $horarioExpediente->save();
     }
 }

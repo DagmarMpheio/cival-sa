@@ -64,12 +64,13 @@ class AppointmentController extends AdminController
 
     public function showCalendar(Request $request)
     {
-        //
-
-        //$agendas = Appointment::with(['employee', 'service'])->where('user_id', $request->user()->id)->get();
-		$agendas = Appointment::all();
-        $agendasCount = Appointment::with(['employee', 'service'])->where('user_id', $request->user()->id)->count();
-
+        if ($request->user()->hasRole('admin')) {
+            $agendas = Appointment::all();
+            $agendasCount = Appointment::count();
+        } else {
+            $agendas = Appointment::with(['employee', 'service'])->where('user_id', $request->user()->id)->get();
+            $agendasCount = Appointment::with(['employee', 'service'])->where('user_id', $request->user()->id)->count();
+        }
         return view('backend.agendas.calendar', compact('agendas', 'agendasCount'));
     }
 

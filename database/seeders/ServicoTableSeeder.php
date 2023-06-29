@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\EmployeeService;
+use App\Models\Servico;
 use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -43,5 +45,14 @@ class ServicoTableSeeder extends Seeder
                 'updated_at' => now(),
             ]
         ]);
+
+
+        //employeeServices servicos para os funcionarios
+        foreach(Servico::all() as $servico){
+            $employeeServices = new EmployeeService();
+            $employeeServices->employee_id = 2;
+            $employeeServices->service_id = $servico->id;
+            $employeeServices->save();
+        }
     }
 }
