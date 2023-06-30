@@ -26,9 +26,11 @@ class UserUpdateRequest extends FormRequest
             'name' => 'required',
             'email' => 'required',
             'telefone' => 'required',
+            'data_nascimento' => 'required',
             'endereco' => 'required',
             'genero'=> 'required',
             'slug' => 'required',
+            'tipo_cliente' => 'required',
             //'password' => 'required_with:password_confirmation|string|confirmed|min:8',
         ];
     }

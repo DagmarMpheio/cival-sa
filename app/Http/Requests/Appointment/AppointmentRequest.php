@@ -35,7 +35,7 @@ class AppointmentRequest extends FormRequest
             'service_id' => 'required',
             'data' => ['required', 'date', new DateRule()],
             'start_time' => 'required|after_or_equal:' . date('g:ia', strtotime(User::find($this->employee_id)->workingHour->first()->start_time)),
-            'finish_time' => 'required|after:start_time|before_or_equal:' . date('g:ia', strtotime(User::find($this->employee_id)->workingHour->first()->finish_time)),
+            //'finish_time' => 'required|after:start_time|before_or_equal:' . date('g:ia', strtotime(User::find($this->employee_id)->workingHour->first()->finish_time)),
         ];
     }
 

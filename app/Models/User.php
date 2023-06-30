@@ -25,11 +25,13 @@ class User extends Authenticatable implements LaratrustUser
         'name',
         'email',
         'telefone',
+        'data_nascimento',
         'endereco',
         'genero',
         'bio',
         'password',
         'slug',
+        'tipo_cliente',
     ];
 
     /**
@@ -91,6 +93,12 @@ class User extends Authenticatable implements LaratrustUser
     public function appointments()
     {
         return $this->hasMany(Appointment::class, 'user_id');
+    }
+
+
+    public function veiculos()
+    {
+        return $this->hasMany(Veiculo::class, 'user_id');
     }
     
 }

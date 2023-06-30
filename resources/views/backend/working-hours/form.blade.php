@@ -56,6 +56,7 @@
                     'id' => 'start_time',
                     'placeholder' => 'Hora de Ínicio',
                     'value' => old('start_time'),
+                    'min'=>'08:00',
                     'required',
                 ]) !!}
 

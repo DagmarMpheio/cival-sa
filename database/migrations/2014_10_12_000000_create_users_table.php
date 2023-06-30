@@ -17,10 +17,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('telefone',20);
+            $table->date('data_nascimento');
             $table->string('genero',9);
             $table->string('endereco');
             $table->string('password');
             $table->string('slug');
+			$table->string('tipo_cliente')->default('Particular');
             $table->text('bio')->nullable();
             $table->rememberToken();
             $table->timestamps();

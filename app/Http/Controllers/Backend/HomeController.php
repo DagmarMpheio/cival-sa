@@ -134,4 +134,10 @@ class HomeController extends AdminController
 
         return Redirect::to('/');
     }
+
+
+    public function financas()
+    {
+       return view('backend.home.financa');
+    }
 }

@@ -77,8 +77,8 @@
 
             @if (check_user_permissions(request(), 'Financas@index'))
                 <li
-                    class="sidebar-item {{ request()->route()->getName() == 'backend.financas.index'? 'active-yellow': '' }}">
-                    <a class="sidebar-link" href="#">
+                    class="sidebar-item {{ request()->route()->getName() == 'backend.home.financas'? 'active-yellow': '' }}">
+                    <a class="sidebar-link" href="{{route('backend.home.financas')}}">
                         <i class="align-middle" data-feather="dollar-sign"></i> <span
                             class="align-middle">Finanças</span>
                     </a>

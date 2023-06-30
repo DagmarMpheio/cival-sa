@@ -53,6 +53,7 @@
                 @endif
             </div>
 
+
             <div class="card-header">
                 {!! Form::label('telefone', 'Telefone', ['class' => 'card-title mb-0', 'for' => 'telefone']) !!}
                 <font color="red">*</font>
@@ -63,6 +64,21 @@
                 @if ($errors->has('telefone'))
                     <span class="help-block">
                         <strong>{{ $errors->first('telefone') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+
+            <div class="card-header">
+                {!! Form::label('data_nascimento', 'Data de Nascimento', ['class' => 'card-title mb-0', 'for' => 'data_nascimento']) !!}
+                <font color="red">*</font>
+            </div>
+            <div class="card-body {{ $errors->has('data_nascimento') ? ' has-error' : '' }} has-feedback">
+                {!! Form::date('data_nascimento', null, ['class' => 'form-control', 'placeholder' => 'Data de Nascimento', 'required']) !!}
+
+                @if ($errors->has('data_nascimento'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('data_nascimento') }}</strong>
                     </span>
                 @endif
             </div>
@@ -102,6 +118,28 @@
                 @if ($errors->has('role'))
                     <span class="help-block">
                         <strong>{{ $errors->first('role') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+
+
+            <div class="card-header">
+                {!! Form::label('tipo_cliente', 'Tipo de Cliente',['class' => 'card-title mb-0', 'for' => 'tipo_cliente']) !!}
+                <font color="red">*</font>
+            </div>
+
+            <div class="card-body {{ $errors->has('tipo_cliente') ? ' has-error' : '' }} has-feedback">
+                {!! Form::select(
+                    'tipo_cliente',
+                    ['Particular' => 'Particular', 'Empresa' => 'Empresa'],
+                    null,
+                    ['class' => 'form-control', 'id' => 'tipo_cliente'],
+                ) !!}
+
+                @if ($errors->has('tipo_cliente'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('tipo_cliente') }}</strong>
                     </span>
                 @endif
             </div>

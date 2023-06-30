@@ -26,9 +26,11 @@ class UserStoreRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|unique:users',
             'telefone' => ['required', 'string'],
+            'data_nascimento' => ['required'],
             'endereco' => ['required', 'string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'slug' => 'required|unique:users',
+            'tipo_cliente' => 'required',
         ];
     }
 }

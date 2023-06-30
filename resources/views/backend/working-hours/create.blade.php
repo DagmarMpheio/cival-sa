@@ -33,6 +33,7 @@
     <script src="/backend/js/tempus-dominus.min.js"></script>
     <script>
         var today = new Date().toISOString().split('T')[0];
+        var todayHour = new Date().toISOString().split('T')[1];
         document.getElementsByName("date")[0].setAttribute('min', today);
 
         const picker = new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'), {

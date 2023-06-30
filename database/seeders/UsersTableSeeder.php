@@ -26,6 +26,7 @@ class UsersTableSeeder extends Seeder
             [
                 'email' => 'dagmarmpheiu@gmail.com',
                 'telefone' => $faker->phoneNumber(),
+                'data_nascimento' => $faker->date(),
                 'endereco' => $faker->address(),
                 'name' => 'Dagmar Mpheio',
                 'genero'=>'Masculino',
@@ -33,11 +34,13 @@ class UsersTableSeeder extends Seeder
                 'slug' => 'dagmar-mpheio',
                 'created_at' => now(),
                 'updated_at' => now(),
-                'bio' => $faker->text(rand(250, 300))
+                'bio' => $faker->text(rand(250, 300)),
+                'tipo_cliente' => 'Particular'
             ],
             [
                 'email' => 'janedoe@test.com',
                 'telefone' => $faker->phoneNumber(),
+                'data_nascimento' => $faker->date(),
                 'endereco' => $faker->address(),
                 'name' => 'Jane Doe',
                 'genero'=>'Femenino',
@@ -45,11 +48,13 @@ class UsersTableSeeder extends Seeder
                 'slug' => 'jane-doe',
                 'created_at' => now(),
                 'updated_at' => now(),
-                'bio' => $faker->text(rand(250, 300))
+                'bio' => $faker->text(rand(250, 300)),
+                'tipo_cliente' => 'Particular'
             ],
             [
                 'email' => 'anamiguel@test.com',
                 'telefone' => $faker->phoneNumber(),
+                'data_nascimento' => $faker->date(),
                 'endereco' => $faker->address(),
                 'name' => 'Ana Miguel',
                 'genero'=>'Femenino',
@@ -57,7 +62,8 @@ class UsersTableSeeder extends Seeder
                 'slug' => 'ana-miguel',
                 'created_at' => now(),
                 'updated_at' => now(),
-                'bio' => $faker->text(rand(250, 300))
+                'bio' => $faker->text(rand(250, 300)),
+                'tipo_cliente' => 'Particular'
             ]
         ]);
 
@@ -65,8 +71,8 @@ class UsersTableSeeder extends Seeder
         $horarioExpediente = new WorkingHour();
         $horarioExpediente->employee_id = 2;
         $horarioExpediente->date = date("Y/m/d");
-        $horarioExpediente->start_time = '08:00:00';
-        $horarioExpediente->finish_time = '15:00:00';
+        $horarioExpediente->start_time = '08:00';
+        $horarioExpediente->finish_time = '15:00';
         $horarioExpediente->save();
     }
 }

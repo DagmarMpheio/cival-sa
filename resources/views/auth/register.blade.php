@@ -53,6 +53,22 @@
                             </div>
                         </div>
 
+
+                        <div class="row mb-3">
+                            <label for="data_nascimento" class="col-md-4 col-form-label text-md-end">{{ __('Data de Nascimento') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="data_nascimento" type="text" class="form-control @error('data_nascimento') is-invalid @enderror" name="data_nascimento" value="{{ old('data_nascimento') }}" required autocomplete="name">
+
+                                @error('data_nascimento')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
                         <div class="row mb-3">
                             <label for="endereco" class="col-md-4 col-form-label text-md-end">{{ __('Endereço') }}</label>
 
@@ -101,6 +117,24 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <label for="tipo_cliente" class="col-md-4 col-form-label text-md-end">{{ __('Tipo de Cliente') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="tipo_cliente" id="tipo_cliente" class="form-control">
+                                    <option value="Particular">Particular</option>
+                                    <option value="Empresa">Empresa</option>
+                                </select>
+                               
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 

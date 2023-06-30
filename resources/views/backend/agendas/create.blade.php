@@ -2,6 +2,10 @@
 
 @section('title', 'Novo Agendamento')
 
+@section('style')
+    <link rel="stylesheet" href="/backend/css/tempus-dominus.min.css">
+@endsection
+
 @section('content')
     <div class="container-fluid p-0">
 
@@ -30,15 +34,15 @@
                             @endif
                         </div>
 
+
                         <div class="card-header">
                             <label class="card-title mb-0" for="data">Data</label>
                             <font color="red">*</font>
                         </div>
-                        <div class="card-body {{ $errors->has('data') ? ' has-error' : '' }} has-feedback">
-                            <input type="date" id="data" class="form-control" placeholder="Data"
-                                value="{{ old('data') }}" name="data" required>
-
-                            @if ($errors->has('data'))
+                        <div class="card-body {{ $errors->has('data') ? ' has-error' : '' }}">
+                            {!! Form::date('data', null, ['class' => 'form-control', 'id' => 'data', 'placeholder' => 'Data', 'required']) !!}
+            
+                             @if ($errors->has('data'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('data') }}</strong>
                                 </span>
@@ -76,27 +80,15 @@
                             <font color="red">*</font>
                         </div>
                         <div class="card-body {{ $errors->has('start_time') ? ' has-error' : '' }} has-feedback">
-                            <input type="time" id="start_time" class="form-control" placeholder="Hora de Início"
-                                value="{{ old('start_time') }}" name="start_time" required>
+                            <select name="start_time" id="start_time" class="form-control">
+                                @foreach ($horariosDisponiveis as $horario)
+                                    <option value="{{ $horario }}">{{ $horario }}</option>
+                                @endforeach
+                            </select>
 
                             @if ($errors->has('start_time'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('start_time') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="card-header">
-                            <label class="card-title mb-0" for="finish_time">Hora de Término</label>
-                            <font color="red">*</font>
-                        </div>
-                        <div class="card-body {{ $errors->has('finish_time') ? ' has-error' : '' }} has-feedback">
-                            <input type="time" id="finish_time" class="form-control" placeholder="Hora de Início"
-                                value="{{ old('finish_time') }}" name="finish_time" required>
-
-                            @if ($errors->has('finish_time'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('finish_time') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -117,7 +109,7 @@
                             @endif
 
 
-                            <input type="hidden" value="{{Auth::id()}}" name="user_id">
+                            <input type="hidden" value="{{ Auth::id() }}" name="user_id">
                         </div>
                     </div>
 
@@ -135,9 +127,20 @@
 @endsection
 
 @section('scripts')
-    <script src="/js/moment.min.js"></script>
+    <script src="/backend/js/popper.min.js"></script>
+    <script src="/backend/js/tempus-dominus.min.js"></script>
     <script>
         var today = new Date().toISOString().split('T')[0];
-        document.getElementsByName("date")[0].setAttribute('min', today);
+        document.getElementsByName("data")[0].setAttribute('min', today);
+
+        const picker = new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'), {
+            //configuracoes aqui
+            /*display: {
+            	viewMode: 'years'
+            }*/
+            localization: {
+                format: 'yyyy-MM-dd HH:mm:ss',
+            }
+        });
     </script>
 @endsection

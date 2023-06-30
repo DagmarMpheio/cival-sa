@@ -23,6 +23,11 @@ class Appointment extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function veiculo()
+    {
+        return $this->belongsTo(Veiculo::class, 'user_id');
+    }
+
     public function service()
     {
         return $this->belongsTo(Servico::class, 'service_id');

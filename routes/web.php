@@ -28,6 +28,7 @@ Route::get('/edit-account', [App\Http\Controllers\Backend\HomeController::class,
 Route::put('/update-account', [App\Http\Controllers\Backend\HomeController::class, 'update']);
 Route::get('/change-password', [App\Http\Controllers\Backend\HomeController::class, 'changePassword']);
 Route::put('/update-password', [App\Http\Controllers\Backend\HomeController::class, 'updatePassword']);
+Route::get('/financas', [App\Http\Controllers\Backend\HomeController::class, 'financas'])->name('backend.home.financas');
 
 //grupo de rotas -> users
 Route::group(['prefix' => 'backend', 'as' => 'backend.'], function () {

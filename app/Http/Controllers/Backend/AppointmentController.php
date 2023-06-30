@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Requests\Appointment\AppointmentRequest;
 use App\Models\Appointment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AppointmentController extends AdminController
@@ -37,7 +38,23 @@ class AppointmentController extends AdminController
     public function create()
     {
         $agenda = new Appointment();
-        return view('backend.agendas.create', compact('agenda'));
+
+        $dataMinima = Carbon::now()->format('d-m-Y');
+
+        // Calcular os horários disponíveis
+        $horariosDisponiveis = [];
+
+        $horarioInicial = Carbon::createFromTime(8, 0); // Horário inicial (8:00)
+        $horarioFinal = Carbon::createFromTime(14, 45); // Horário final (14:45)
+
+        $horarioAtual = clone $horarioInicial;
+
+        while ($horarioAtual <= $horarioFinal) {
+            $horariosDisponiveis[] = $horarioAtual->format('H:i');
+            $horarioAtual->addMinutes(15);
+        }
+
+        return view('backend.agendas.create', compact('agenda','horariosDisponiveis','dataMinima'));
     }
 
     /**
@@ -47,8 +64,15 @@ class AppointmentController extends AdminController
     {
         $data = $request->all();
         //$request->user()->appointments()->create($data);
-        Appointment::create($data);
-        //return dd($request->all());
+        //finish_time=start_time+15 min
+        $finish_time = Carbon::parse($data['start_time']);
+        $finish_time->addMinutes(15);
+        $data['finish_time']=$finish_time->format('H:i');
+
+        $appointment = Appointment::create($data);
+        //return dd($data);
+
+        //veiculos add aqui
 
         return redirect('/backend/agendas')->with("message", "Novo agendamento inserido com sucesso!");
     }
