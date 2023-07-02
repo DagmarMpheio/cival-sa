@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -42,7 +43,7 @@ class Post extends Model
     {
         $commentsNumber = $this->comments()->count();
 
-        return $commentsNumber . " " . \Str::plural($label, $commentsNumber);
+        return $commentsNumber . " " . Str::plural($label, $commentsNumber);
     }
 
     //criar comentarios
@@ -62,7 +63,7 @@ class Post extends Model
             $newTag->name = ucwords(trim($tag));
             $newTag->slug = \Str::slug($tag);*/
             $newTag = Tag::firstOrCreate(
-                ['slug' => \Str::slug($tag)],
+                ['slug' => Str::slug($tag)],
                 ['name' => ucwords(trim($tag))]
             );/*firstOrCreate() vai criar dados e verificar se ja existem*/
             /*$newTag->save();*/
@@ -115,11 +116,22 @@ class Post extends Model
         return $imageUrl;
     }
 
-    public function getDateAttribute($value)
+    /*public function getDateAttribute($value)
     {
-        /*return $this->created_at->diffForHumans();//formatacao das datas*/
-        return is_null($this->published_at) ? '' : $this->published_at->diffForHumans(); //formatacao das datas
-    }
+        //return $this->created_at->diffForHumans();//formatacao das datas
+        return is_null($this->published_at) ? '' : $this->published_at->diffForHumans();//formatacao das datas
+    }*/
+	
+	public function getDateAttribute($value)
+	{
+		if (is_null($this->published_at)) {
+			return '';
+		}
+
+		$publishedAt = Carbon::parse($this->published_at);
+		return $publishedAt->diffForHumans();
+	}
+
 
     //escope data de publicacao
     public function scopePublished($query)
@@ -228,4 +240,6 @@ class Post extends Model
             });
         }
     }
+	
+
 }

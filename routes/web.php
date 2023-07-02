@@ -13,9 +13,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
-});
+}); */
+
+// Pagina Blog - Vista de usuario
+Route::get('/', [App\Http\Controllers\BlogController::class,'index'])->name('blog');
+/*Route::get('/blog/show', function () {
+    return view('blog.show');
+});*/
+
+Route::get('/blog/{post}', [App\Http\Controllers\BlogController::class,'show'])->name('blog.show');
+Route::get('/category/{category}', [App\Http\Controllers\BlogController::class,'category'])->name('category');
+
+/*Route::post('/post/{post}/comments', [
+    'uses' => [App\Http\Controllers\CommentsController::class,'store'],
+    'as' => 'blog.comments'
+]);*/
+
+Route::post('/post/{post}/comments', [App\Http\Controllers\CommentsController::class,'store'])->name('blog.comments');
+
+Route::get('/author/{author}', [App\Http\Controllers\BlogController::class,'author'])->name('author');
+Route::get('/tag/{tag}', [App\Http\Controllers\BlogController::class,'tag'])->name('tag');
+
 
 Auth::routes();
 
