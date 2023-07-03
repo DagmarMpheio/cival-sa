@@ -20,7 +20,7 @@
         ]) !!}
 
         @csrf
-        
+
         @include('backend.blog.form')
 
         {!! Form::close() !!}
@@ -29,6 +29,7 @@
 @endsection
 
 @section('scripts')
+    <script src="/backend/js/jquery-2.2.3.min.js"></script>
     <script type="text/javascript">
         /*criar o slug automaticamente*/
         $('#title').on('blur', function() {
@@ -88,16 +89,16 @@
             format: 'YYYY-MM-DD HH:mm:ss',
             showClear: true
         }); */
-		
-		const picker = new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'),{
-			//configuracoes aqui
-			/*display: {
-				viewMode: 'years'
-			}*/
-            localization:{
-                format:'yyyy-MM-dd HH:mm:ss',
+
+        const picker = new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'), {
+            //configuracoes aqui
+            /*display: {
+            	viewMode: 'years'
+            }*/
+            localization: {
+                format: 'yyyy-MM-dd HH:mm:ss',
             }
-		});
+        });
 
         //botao rascunho
         $('#draft-btn').click(function(e) {

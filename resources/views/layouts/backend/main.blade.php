@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="/backend/css/bootstrap-datetimepicker.min.css">
     {{-- jasny-boostrap --}}
     <link rel="stylesheet" href="/backend/plugins/jasny-bootstrap/css/jasny-bootstrap.min.css">
+
     @yield('style')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -61,7 +62,7 @@
    
 
     <!-- jQuery 2.2.3 -->
-    <script src="/backend/js/jquery-2.2.3.min.js"></script>
+    {{-- <script src="/backend/js/jquery-2.2.3.min.js"></script> --}}
     <script src="/backend/plugins/simplemde/simplemde.min.js"></script>
     {{-- moment js --}}
     <script src="/backend/js/moment-with-locales.min.js"></script>
