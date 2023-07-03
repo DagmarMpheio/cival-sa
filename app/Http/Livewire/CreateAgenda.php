@@ -3,25 +3,51 @@
 namespace App\Http\Livewire;
 
 use App\Models\Product;
+use App\Models\Servico;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class CreateAgenda extends Component
 {
     public $currentStep = 1;
-    public $name, $amount, $description, $status = 1, $stock;
+    public $service_id, $employee_id, $data, $start_time, $comments;
     public $successMessage = '';
 
     public function render()
     {
-        return view('livewire.create-agenda');
+        $servicos = Servico::pluck('servico', 'id');
+        $atendentes = User::whereHas('roles', function ($query) {
+            $query->where('id', '2');
+        })->pluck('name', 'id');
+
+         // Calcular os horários disponíveis
+         $horariosDisponiveis = [];
+
+         $horarioInicial = Carbon::createFromTime(8, 0); // Horário inicial (8:00)
+         $horarioFinal = Carbon::createFromTime(14, 45); // Horário final (14:45)
+ 
+         $horarioAtual = clone $horarioInicial;
+ 
+         while ($horarioAtual <= $horarioFinal) {
+             $horariosDisponiveis[] = $horarioAtual->format('H:i');
+             $horarioAtual->addMinutes(15);
+         }
+
+         $idUsuarioAutenticado = Auth::id();
+
+        return view('livewire.create-agenda',compact('servicos','atendentes','horariosDisponiveis'));
     }
 
     public function firstStepSubmit()
     {
         $validatedData = $this->validate([
-            'name' => 'required|unique:products',
-            'amount' => 'required|numeric',
-            'description' => 'required',
+            'service_id' => 'required',
+            'employee_id' => 'required',
+            'data' => 'required',
+            'start_time' => 'required',
+            'comments' => 'required',
         ]);
 
         $this->currentStep = 2;
@@ -41,11 +67,11 @@ class CreateAgenda extends Component
     public function submitForm()
     {
         Product::create([
-            'name' => $this->name,
-            'amount' => $this->amount,
-            'description' => $this->description,
-            'stock' => $this->stock,
-            'status' => $this->status,
+            'service_id' => $this->service_id,
+            'employee_id' => $this->employee_id,
+            'data' => $this->data,
+            'start_time' => $this->start_time,
+            'comments' => $this->comments,
 
         ]);
 
@@ -61,10 +87,10 @@ class CreateAgenda extends Component
 
     public function clearForm()
     {
-        $this->name = '';
-        $this->amount = '';
-        $this->description = '';
-        $this->stock = '';
-        $this->status = 1;
+        $this->service_id = '';
+        $this->employee_id = '';
+        $this->data = '';
+        $this->start_time = '';
+        $this->comments = '';
     }
 }
