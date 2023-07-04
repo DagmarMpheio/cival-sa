@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\AlbumFotoDoc;
 use App\Models\Multimedia;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -32,7 +33,7 @@ class MultimediaController extends AdminController
             $multimedias = Multimedia::where('tipo', 'Documento')->latest()->simplePaginate(7);
         } else if ($status == 'imagens') {
             $multimediaCount = Multimedia::where('tipo', 'Imagem')->count();
-            $multimedias = Multimedia::where('tipo', 'Imagem')->latest()->simplePaginate(7);
+            $multimedias = Multimedia::with('album')->where('tipo', 'Imagem')->latest()->simplePaginate(7);
         } else if ($status == 'audios') {
             $multimediaCount = Multimedia::where('tipo', 'Aúdio')->count();
             $multimedias = Multimedia::where('tipo', 'Aúdio')->latest()->simplePaginate(7);
@@ -70,7 +71,7 @@ class MultimediaController extends AdminController
 
         $data = $this->handleResquest($request);
         if ($data['doc_type'] == 'Seleccione o tipo de documento') {
-            $data['doc_type'] = null;
+            $data['doc_type'] = " ";
         }
 
         $multimedia = Multimedia::create($data);
@@ -128,7 +129,7 @@ class MultimediaController extends AdminController
         $multimedia = Multimedia::findOrFail($id);
         $file = $multimedia->ficheiro;
 
-        $this->removeFileByExtension(null, $file); //remove o ficheiro do servidor
+        $this->removeFileByExtension(" ", $file); //remove o ficheiro do servidor
 
         $multimedia->delete();
 
@@ -143,13 +144,13 @@ class MultimediaController extends AdminController
         return false;
     }
 
-    private function removeFileByExtension($oldFile = null, $file)
+    private function removeFileByExtension($oldFile = " ", $file)
     {
-        if ($oldFile != null)
+        if ($oldFile != " ")
             $extensaoOldFile = explode(".", $oldFile)[1];
         $extensaoNewFile = explode(".", $file)[1];
 
-        if ($oldFile != null) {
+        if ($oldFile != " ") {
             if (($oldFile !== $file) && ($extensaoOldFile == $extensaoNewFile && $extensaoNewFile == 'pdf')) {
                 $this->removeDoc($oldFile);
             }
@@ -195,24 +196,26 @@ class MultimediaController extends AdminController
                 $docName = $this->handleResquestDoc($request);
                 $dados['tipo'] = 'Documento';
                 $dados['ficheiro'] = $docName;
+                $dados['album_id'] = null;
             }
             if ($extension && ($extension == 'jpeg' || $extension == 'png' || $extension == 'jpg' || $extension == 'gif' || $extension == 'svg')) {
                 $imgName = $this->handleResquestImage($request);
                 $dados['tipo'] = 'Imagem';
                 $dados['ficheiro'] = $imgName;
-                $dados['doc_type'] == " ";
+                $dados['doc_type'] = " ";
             }
             if ($extension && ($extension == 'mp3' || $extension == 'acc' || $extension == 'm4a')) {
                 $audioName = $this->handleResquestAudio($request);
                 $dados['tipo'] = 'Aúdio';
                 $dados['ficheiro'] = $audioName;
-                $dados['doc_type'] == " ";
+                $dados['doc_type'] = " ";
+                $dados['album_id'] = null;
             }
             if ($extension && ($extension == 'mp4' || $extension == 'webm' || $extension == '3gp' || $extension == 'mov' || $extension == 'flv' || $extension == 'avi' || $extension == 'wmv' || $extension == 'ts' || $extension == 'mkv')) {
                 $videoName = $this->handleResquestVideo($request);
                 $dados['tipo'] = 'Vídeo';
                 $dados['ficheiro'] = $videoName;
-                $dados['doc_type'] == " ";
+                $dados['album_id'] = null;
             }
             return $dados;
         }

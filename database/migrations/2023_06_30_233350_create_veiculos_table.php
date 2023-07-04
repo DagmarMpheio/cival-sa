@@ -20,11 +20,11 @@ return new class extends Migration
             $table->string('tipo_veiculo');
             $table->string('combustivel');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('appointment_id');
+            //$table->unsignedBigInteger('appointment_id');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
+            //$table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
 
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';

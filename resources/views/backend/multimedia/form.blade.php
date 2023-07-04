@@ -31,25 +31,6 @@
             </div>
 
             <div class="card-header">
-                {!! Form::label('doc_type', 'Tipo de Documento ?', ['class' => 'card-title mb-0', 'for' => 'doc_type']) !!}
-            </div>
-            <div class="card-body {{ $errors->has('doc_type') ? ' has-error' : '' }} has-feedback">
-                {{-- {!! Form::text('doc_type',null,['class' => 'form-control','id'=>'doc_type','placeholder'=>'Nome do Ficheiro','autofocus']) !!} --}}
-                {!! Form::select(
-                    'doc_type',
-                    ['Seleccione o tipo de documento', 'Inspeção' => 'Inspeção', 'Matrícula' => 'Matrícula', 'Película' => 'Película'],
-                    null,
-                    ['class' => 'form-control', 'id' => 'doc_type'],
-                ) !!}
-
-                @if ($errors->has('doc_type'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('doc_type') }}</strong>
-                    </span>
-                @endif
-            </div>
-
-            <div class="card-header">
                 {!! Form::label('ficheiro', 'Escolher ficheiro', ['class' => 'card-title mb-0', 'for' => 'ficheiro']) !!}
                 <font color="red">*</font>
             </div>
@@ -63,7 +44,47 @@
                 @endif
             </div>
 
-            <input type="hidden" class='form-control' name="tipo" id="tipo" value="">
+            <div id="tipo-documento">
+                <div class="card-header">
+                    {!! Form::label('doc_type', 'Tipo de Documento', ['class' => 'card-title mb-0', 'for' => 'doc_type']) !!}
+                </div>
+                <div class="card-body {{ $errors->has('doc_type') ? ' has-error' : '' }} has-feedback">
+                    {{-- {!! Form::text('doc_type',null,['class' => 'form-control','id'=>'doc_type','placeholder'=>'Nome do Ficheiro','autofocus']) !!} --}}
+                    {!! Form::select(
+                        'doc_type',
+                        ['Seleccione o tipo de documento', 'Inspeção' => 'Inspeção', 'Matrícula' => 'Matrícula', 'Película' => 'Película'],
+                        null,
+                        ['class' => 'form-control', 'id' => 'doc_type'],
+                    ) !!}
+
+                    @if ($errors->has('doc_type'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('doc_type') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+
+            <div id="album-fotos">
+                <div class="card-header">
+                    {!! Form::label('album_id', 'Nome do Album', ['class' => 'card-title mb-0', 'for' => 'album_id']) !!}
+                </div>
+                <div class="card-body {{ $errors->has('album_id') ? ' has-error' : '' }} has-feedback">
+                    {!! Form::select(
+                        'album_id',
+                        App\Models\AlbumFotoDoc::pluck('nome_album', 'id'),
+                        null,
+                        ['class' => 'form-control', 'id' => 'album_id'],
+                    ) !!}
+
+                    @if ($errors->has('album_id'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('album_id') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
 
             <div class="card-header">
                 {!! Form::label('descricao', 'Descrição', ['class' => 'card-title mb-0', 'for' => 'descricao']) !!}

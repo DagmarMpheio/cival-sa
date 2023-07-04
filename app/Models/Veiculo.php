@@ -17,7 +17,7 @@ class Veiculo extends Model
         'tipo_veiculo',
         'combustivel',
         'user_id',
-        'appointment_id',
+        //'appointment_id',
     ];
 
 
@@ -27,8 +27,8 @@ class Veiculo extends Model
     }
 
 
-    public function appointment()
+   /*  public function appointment()
     {
         return $this->belongsTo(Appointment::class);
-    }
+    } */
 }

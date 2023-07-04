@@ -10,7 +10,7 @@ class Appointment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'service_id', 'employee_id', 'user_id', 'data', 'start_time', 'finish_time', 'comments'
+        'service_id', 'employee_id', 'user_id','veiculo_id', 'data', 'start_time', 'finish_time', 'comments'
     ];
 
     public function employee()
@@ -25,7 +25,7 @@ class Appointment extends Model
 
     public function veiculo()
     {
-        return $this->belongsTo(Veiculo::class, 'user_id');
+        return $this->belongsTo(Veiculo::class, 'veiculo_id');
     }
 
     public function service()

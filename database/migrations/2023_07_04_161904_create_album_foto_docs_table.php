@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('multimedia', function (Blueprint $table) {
-            $table->string('nome_ficheiro');
+        Schema::create('album_foto_docs', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome_album');
+            $table->timestamps();
+
+            $table->engine = 'InnoDB';
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
         });
     }
 
@@ -21,8 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('multimedia', function (Blueprint $table) {
-            $table->dropColumn('nome_ficheiro');
-        });
+        Schema::dropIfExists('album_foto_docs');
     }
 };

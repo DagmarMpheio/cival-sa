@@ -22,3 +22,32 @@
 
     </div>
 @endsection
+
+@section('scripts')
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            //ocultar os mesmo inicialmente
+            $('#tipo-documento').hide();
+            $('#album-fotos').hide();
+
+            $('#ficheiro').change(function() {
+                var ficheiro = $(this).val();
+                var extensao = ficheiro.split('.').pop().toLowerCase();
+
+                console.log("Extesao: "+extensao);
+
+                if (extensao === 'pdf') {
+                    $('#tipo-documento').show();
+                    $('#album-fotos').hide();
+                } else if (extensao === 'jpg' || extensao === 'png') {
+                    $('#tipo-documento').hide();
+                    $('#album-fotos').show();
+                } else {
+                    $('#tipo-documento').hide();
+                    $('#album-fotos').hide();
+                }
+            });
+        });
+    </script>
+@endsection

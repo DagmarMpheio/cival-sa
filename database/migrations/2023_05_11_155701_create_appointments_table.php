@@ -24,7 +24,7 @@ return new class extends Migration
             $table->foreign('employee_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('service_id')->references('id')->on('servicos')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            
+           
             $table->timestamps();
 
             $table->engine = 'InnoDB';

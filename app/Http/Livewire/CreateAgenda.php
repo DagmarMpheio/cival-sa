@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Appointment;
 use App\Models\Product;
 use App\Models\Servico;
 use App\Models\User;
+use App\Models\Veiculo;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -12,7 +14,8 @@ use Livewire\Component;
 class CreateAgenda extends Component
 {
     public $currentStep = 1;
-    public $service_id, $employee_id, $data, $start_time, $comments;
+    public $service_id, $employee_id, $data, $start_time, $comments; //variaveis do agendamento
+    public $marca, $modelo, $matricula, $data_matricula, $tipo_veiculo, $combustivel; //variaveis do veiculo no agendamento
     public $successMessage = '';
 
     public function render()
@@ -22,22 +25,19 @@ class CreateAgenda extends Component
             $query->where('id', '2');
         })->pluck('name', 'id');
 
-         // Calcular os horários disponíveis
-         $horariosDisponiveis = [];
+        // Calcular os horários disponíveis
+        $horariosDisponiveis = [];
 
-         $horarioInicial = Carbon::createFromTime(8, 0); // Horário inicial (8:00)
-         $horarioFinal = Carbon::createFromTime(14, 45); // Horário final (14:45)
- 
-         $horarioAtual = clone $horarioInicial;
- 
-         while ($horarioAtual <= $horarioFinal) {
-             $horariosDisponiveis[] = $horarioAtual->format('H:i');
-             $horarioAtual->addMinutes(15);
-         }
+        $horarioInicial = Carbon::createFromTime(8, 0); // Horário inicial (8:00)
+        $horarioFinal = Carbon::createFromTime(14, 45); // Horário final (14:45)
 
-         $idUsuarioAutenticado = Auth::id();
+        $horarioAtual = clone $horarioInicial;
 
-        return view('livewire.create-agenda',compact('servicos','atendentes','horariosDisponiveis'));
+        while ($horarioAtual <= $horarioFinal) {
+            $horariosDisponiveis[] = $horarioAtual->format('H:i');
+            $horarioAtual->addMinutes(15);
+        }
+        return view('livewire.create-agenda', compact('servicos', 'atendentes', 'horariosDisponiveis'));
     }
 
     public function firstStepSubmit()
@@ -56,8 +56,12 @@ class CreateAgenda extends Component
     public function secondStepSubmit()
     {
         $validatedData = $this->validate([
-            'stock' => 'required',
-            'status' => 'required',
+            'marca' => 'required',
+            'modelo' => 'required',
+            'matricula' => 'required',
+            'data_matricula' => 'required',
+            'tipo_veiculo' => 'required',
+            'combustivel' => 'required',
         ]);
 
         $this->currentStep = 3;
@@ -66,23 +70,40 @@ class CreateAgenda extends Component
 
     public function submitForm()
     {
-        Product::create([
-            'service_id' => $this->service_id,
-            'employee_id' => $this->employee_id,
-            'data' => $this->data,
-            'start_time' => $this->start_time,
-            'comments' => $this->comments,
+        $finish_time = Carbon::parse($this->start_time);
+        $finish_time->addMinutes(15)->format('H:i');
+        $idUsuarioAutenticado = Auth::id();
 
+        $veiculo = Veiculo::create([
+            'marca' => $this->marca,
+            'modelo' => $this->modelo,
+            'matricula' => $this->matricula,
+            'data_matricula' => $this->data_matricula,
+            'tipo_veiculo' => $this->tipo_veiculo,
+            'combustivel' => $this->combustivel,
+            'user_id' => $idUsuarioAutenticado,
         ]);
 
-        $this->successMessage = 'Producto Criado com Successo.';
+
+        Appointment::create([
+            'service_id' => $this->service_id,
+            'employee_id' => $this->employee_id,
+            'user_id' => $idUsuarioAutenticado,
+            'veiculo_id' => $veiculo->id,
+            'data' => $this->data,
+            'start_time' => $this->start_time,
+            'finish_time' => $finish_time,
+            'comments' => $this->comments,
+        ]);
+
+        $this->successMessage = 'Agendamento Efectuado com Successo.';
         $this->clearForm();
         $this->currentStep = 1;
     }
 
     public function back($step)
     {
-        $this->currentStep = $step;    
+        $this->currentStep = $step;
     }
 
     public function clearForm()
@@ -92,5 +113,13 @@ class CreateAgenda extends Component
         $this->data = '';
         $this->start_time = '';
         $this->comments = '';
+
+        //campos do veiculo
+        $this->marca = '';
+        $this->modelo = '';
+        $this->matricula = '';
+        $this->data_matricula = '';
+        $this->tipo_veiculo = '';
+        $this->combustivel = '';
     }
 }

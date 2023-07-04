@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('multimedia', function (Blueprint $table) {
-            $table->string('nome_ficheiro');
+        Schema::table('appointments', function (Blueprint $table) {
+            $table->unsignedBigInteger('veiculo_id')->nullable();
+            $table->foreign('veiculo_id')->references('id')->on('veiculos')->onDelete('cascade');
+            
         });
     }
 
@@ -21,8 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('multimedia', function (Blueprint $table) {
-            $table->dropColumn('nome_ficheiro');
+        Schema::table('appointments', function (Blueprint $table) {
+            $table->dropColumn('veiculo_id');
         });
     }
 };

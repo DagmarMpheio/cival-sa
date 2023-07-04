@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('multimedia', function (Blueprint $table) {
-            $table->string('nome_ficheiro');
+            $table->unsignedBigInteger('album_id')->nullable();
+            $table->foreign('album_id')->references('id')->on('album_foto_docs')->onDelete('cascade');
         });
     }
 
@@ -22,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('multimedia', function (Blueprint $table) {
-            $table->dropColumn('nome_ficheiro');
+            $table->dropColumn('album_id');
         });
     }
 };

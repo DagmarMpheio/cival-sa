@@ -1,0 +1,30 @@
+<!-- No seu arquivo Blade (.blade.php) -->
+<input id="arquivo" type="file">
+<input id="campo1" type="text" name="campo1" placeholder="Campo 1" style="display: none;">
+<input id="campo2" type="text" name="campo2" placeholder="Campo 2" style="display: none;">
+<input id="campo3" type="text" name="campo3" placeholder="Campo 3" style="display: none;">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#arquivo').change(function() {
+            var arquivo = $(this).val();
+            var extensao = arquivo.split('.').pop().toLowerCase();
+
+            if (extensao === 'pdf') {
+                $('#campo1').show();
+                $('#campo2').hide();
+                $('#campo3').hide();
+            } else if (extensao === 'jpg' || extensao === 'png') {
+                $('#campo1').hide();
+                $('#campo2').show();
+                $('#campo3').hide();
+            } else {
+                $('#campo1').hide();
+                $('#campo2').hide();
+                $('#campo3').show();
+            }
+        });
+    });
+</script>
+   
