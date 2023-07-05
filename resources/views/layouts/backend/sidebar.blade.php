@@ -68,7 +68,7 @@
 
             @if (check_user_permissions(request(), 'Servicos@index'))
                 <li
-                    class="sidebar-item {{ request()->route()->getName() == 'backend.servicos.index' ||request()->route()->getName() == 'backend.servicos.edit' ||request()->route()->getName() == 'backend.servicos.create'? 'active-yellow': '' }}">
+                    class="sidebar-item {{ request()->route()->getName() == 'backend.servicos.index' || request()->route()->getName() == 'backend.servicos.edit' ||request()->route()->getName() == 'backend.servicos.create'? 'active-yellow': '' }}">
                     <a class="sidebar-link" href="{{ route('backend.servicos.index') }}">
                         <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Serviços</span>
                     </a>

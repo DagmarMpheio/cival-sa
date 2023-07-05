@@ -1,0 +1,237 @@
+
+@keyframes reproducao{
+    from{
+        background-image: url('../img/anuncios/alegria.jpg');
+        background-size: 200px;
+    }
+    25%{
+        background-image: url('../img/anuncios/alegria1.png');
+        background-size: 200px;
+    }
+    50%{
+        background-image: url('../img/anuncios/alegria2.png');
+        background-size: 200px;
+    }
+    75%{
+        background-image: url('../img/anuncios/alegria3.jpg');
+        background-size: 200px;
+    }
+    to{
+        background-image: url('../img/anuncios/alegria5.jpg');
+        background-size: 200px;
+
+    }
+}
+.anuncio{
+    width: 100%;
+    height: 300px;
+    animation-name: reproducao;
+    animation-duration: 10s;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+    animation-direction:normal;
+    background-position: 100%;
+    background-clip: content-box;
+    background-size: 200px;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    margin-bottom: 30px;
+    background-position: left bottom;
+    background-position-x: 50px;
+
+
+}
+.anuncio figure{
+    width: 100%;
+    background-color: rgba(143, 143, 143, 0.055);
+    height: 100%;
+    margin: auto;
+}
+.reproducao{
+    width: 100%;
+    height: 90px;
+    background-image:  url('../img/anuncios/alegria1.png');
+    background-position: 100%;
+    background-clip: content-box;
+    background-size: 90px;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+}
+.reproducao figure{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgb(255, 255, 255));
+    position: relative;
+
+}
+.reproducao figure div img{
+    width: 15%;
+}
+.reproducao figure div input[type=range]{
+    width: 20%;
+}
+.reproducao figcaption{
+    color: rgb(255, 51, 0);
+    font-weight: bolder;
+    font-size: 17pt;
+}
+@keyframes anuncio {
+    from {
+        color: #fff;
+        font-size: 0.8em;
+    } to {
+        color: orange;
+        font-size: 0.6em;
+    }
+}
+.anuncio h1{
+    display: block;
+    color: rgb(255, 72, 0);
+    font-weight: bold;
+    font-size: 36pt;
+}
+.anuncio div{
+    width: 100%;
+    float: right;
+    margin-top: 10px;
+}
+/*css para Tablets*/
+
+@media(min-width:960px){
+
+.anuncio{
+    width:90%;
+    margin:auto;
+    height: 300px;
+    animation-name: reproducao;
+    animation-duration: 10s;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+    animation-direction:normal;
+    background-image:  url('../img/anuncios/alegria1.png');
+    background-position: 100%;
+    background-clip: content-box;
+    background-size: 200px;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    margin-bottom: 30px;
+    background-position: left bottom;
+    background-position-x: 10px;
+
+
+}
+
+
+.anuncio h1{
+    font-size:50pt;
+}
+.anuncio div{
+    width: 80%;
+    float: right;
+    margin-top: 20px;
+}
+}
+.anunciar1{
+    width: 100%;
+    background-color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.diveM{
+    display: none;
+    transition: 5s ;
+    }
+
+.diveM + span{
+    color: white;
+   }
+
+.div-alert{
+top: 0;
+transition: 5s;
+display: block;
+animation-name: cfb;
+animation-duration: 3s;
+position: absolute;
+}
+.div-alertM{
+    top: 0;
+    transition: 5s;
+    display: block;
+    animation-name: cfb;
+    animation-duration: 3s;
+    position: absolute;
+    height: 100%;
+    }
+
+
+.certeza{
+width: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.dive1{
+    background-color: rgba(0, 0, 0, 0.432);
+    width: 100%;
+    height: 100%;
+    z-index: 2000000;
+    position: fixed;
+}
+.section1{
+    width: 100%;
+    height: 500px;
+    background-color: rgba(0, 0, 0, 0);
+    position: fixed;
+    display: flex;
+    z-index: 2000000;
+}
+.section1M{
+    width: 100%;
+    height: 500px;
+    background-color: rgba(0, 0, 0, 0);
+    position: fixed;
+    display: flex;
+    z-index: 2000000;
+}
+.section1>div{
+    width: 45%;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px black;
+    background-color: white;
+    margin: auto;
+    color: white;
+    z-index: 10000;
+    text-align: center;
+}
+.section1M>div{
+    width: 45%;
+    height: 640px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px black;
+    background-color: white;
+    margin: auto;
+    color: white;
+    z-index: 10000;
+    text-align: center;
+}
+
+
+
+
+
+
