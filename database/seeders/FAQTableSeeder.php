@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\FAQS;
 use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,26 +20,12 @@ class FAQTableSeeder extends Seeder
 
         $faker = Factory::create(); //dados falsos(aleatorios)
 
-        //gerar 3 faqs
-        DB::table('faqs')->insert([
-            [
-                'questao' => $faker->paragraph() . "?",
-                'resposta' => $faker->text(rand(100, 50)),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'questao' => $faker->paragraph() . "?",
-                'resposta' => $faker->text(rand(100, 50)),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'questao' => $faker->paragraph() . "?",
-                'resposta' => $faker->text(rand(100, 50)),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]
-        ]);
+        #criar 3 faqs aleatorias
+        for ($i = 1; $i <= 3; $i++) {
+            $faq = new FAQS();
+            $faq->questao = $faker->text(rand(100, 100)) . "?";
+            $faq->resposta = $faker->text(rand(200, 200));
+            $faq->save();
+        }
     }
 }

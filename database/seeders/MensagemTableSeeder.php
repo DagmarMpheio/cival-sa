@@ -16,7 +16,7 @@ class MensagemTableSeeder extends Seeder
     public function run(): void
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        DB::table('faqs')->truncate(); //apagar todos os dados da tabela
+        DB::table('mensagens')->truncate(); //apagar todos os dados da tabela
 
         $faker = Factory::create(); //dados falsos(aleatorios)
 

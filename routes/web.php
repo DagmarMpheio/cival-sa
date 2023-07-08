@@ -18,12 +18,19 @@ use Illuminate\Support\Facades\Route;
 }); */
 
 // Pagina Blog - Vista de usuario
-Route::get('/', [App\Http\Controllers\BlogController::class,'index'])->name('blog');
-/*Route::get('/blog/show', function () {
+/*Route::get('/', [App\Http\Controllers\BlogController::class,'index'])->name('blog');
+Route::get('/blog/show', function () {
     return view('blog.show');
 });*/
 
+//site guest
+Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'] )->name('index');
+Route::get('/pesquisar', [App\Http\Controllers\WelcomeController::class, 'pesquisar'] )->name('pesquisar');
+Route::get('/faqs', [App\Http\Controllers\WelcomeController::class, 'showFaqs'])->name('faqs');
+Route::post('/mensagem',[App\Http\Controllers\WelcomeController::class, 'mensagem'])->name('post-mensagem');
+Route::get('/documentos', [App\Http\Controllers\WelcomeController::class, 'showDocs'])->name('documentos');
 Route::get('/blog/{post}', [App\Http\Controllers\BlogController::class,'show'])->name('blog.show');
+Route::get('/blog', [App\Http\Controllers\BlogController::class,'index'])->name('blog');
 Route::get('/category/{category}', [App\Http\Controllers\BlogController::class,'category'])->name('category');
 
 /*Route::post('/post/{post}/comments', [

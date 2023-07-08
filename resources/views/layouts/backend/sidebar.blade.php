@@ -40,7 +40,7 @@
 
             @if (check_user_permissions(request(), 'Agendas@index'))
                 <li
-                    class="sidebar-item {{ request()->route()->getName() == 'backend.agendas.index' ||request()->route()->getName() == 'backend.agendas.create' || request()->route()->getName() == 'backend.agendas.edit' || request()->route()->getName() == 'backend.agendas.showCalendar' ? 'active-yellow': '' }}">
+                    class="sidebar-item {{ request()->route()->getName() == 'backend.agendas.index' ||request()->route()->getName() == 'backend.agendas.create' ||request()->route()->getName() == 'backend.agendas.edit' ||request()->route()->getName() == 'backend.agendas.showCalendar'? 'active-yellow': '' }}">
                     <a class="sidebar-link" href="{{ route('backend.agendas.index') }}">
                         <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Agendas</span>
                     </a>
@@ -68,7 +68,7 @@
 
             @if (check_user_permissions(request(), 'Servicos@index'))
                 <li
-                    class="sidebar-item {{ request()->route()->getName() == 'backend.servicos.index' || request()->route()->getName() == 'backend.servicos.edit' ||request()->route()->getName() == 'backend.servicos.create'? 'active-yellow': '' }}">
+                    class="sidebar-item {{ request()->route()->getName() == 'backend.servicos.index' ||request()->route()->getName() == 'backend.servicos.edit' ||request()->route()->getName() == 'backend.servicos.create'? 'active-yellow': '' }}">
                     <a class="sidebar-link" href="{{ route('backend.servicos.index') }}">
                         <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Serviços</span>
                     </a>
@@ -78,7 +78,7 @@
             @if (check_user_permissions(request(), 'Financas@index'))
                 <li
                     class="sidebar-item {{ request()->route()->getName() == 'backend.home.financas'? 'active-yellow': '' }}">
-                    <a class="sidebar-link" href="{{route('backend.home.financas')}}">
+                    <a class="sidebar-link" href="{{ route('backend.home.financas') }}">
                         <i class="align-middle" data-feather="dollar-sign"></i> <span
                             class="align-middle">Finanças</span>
                     </a>
@@ -98,7 +98,8 @@
                 <li
                     class="sidebar-item {{ request()->route()->getName() == 'backend.mensagens.index' ||request()->route()->getName() == 'backend.mensagens.edit' ||request()->route()->getName() == 'backend.mensagens.create'? 'active-yellow': '' }}">
                     <a class="sidebar-link" href="{{ route('backend.mensagens.index') }}">
-                        <i class="align-middle" data-feather="message-circle"></i> <span class="align-middle">Mensagens</span>
+                        <i class="align-middle" data-feather="message-circle"></i> <span
+                            class="align-middle">Mensagens</span>
                     </a>
                 </li>
             @endif
@@ -111,6 +112,16 @@
                     </a>
                 </li>
             @endif
+
+            <li class="sidebar-header">
+                Site
+            </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="/">
+                    <i class="align-middle" data-feather="home"></i> <span class="align-middle">Home</span>
+                </a>
+            </li>
 
             <li class="sidebar-header">
                 Conta
