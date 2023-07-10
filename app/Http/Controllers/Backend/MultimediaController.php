@@ -33,7 +33,7 @@ class MultimediaController extends AdminController
             $multimedias = Multimedia::where('tipo', 'Documento')->latest()->simplePaginate(7);
         } else if ($status == 'imagens') {
             $multimediaCount = Multimedia::where('tipo', 'Imagem')->count();
-            $multimedias = Multimedia::with('album')->where('tipo', 'Imagem')->latest()->simplePaginate(7);
+            $multimedias = Multimedia::with('album')->where('tipo', 'Imagem')->latest()->simplePaginate(10);
         } else if ($status == 'audios') {
             $multimediaCount = Multimedia::where('tipo', 'Aúdio')->count();
             $multimedias = Multimedia::where('tipo', 'Aúdio')->latest()->simplePaginate(7);

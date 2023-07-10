@@ -28,5 +28,9 @@ class AlbumFotoDocTableSeeder extends Seeder
         $cival_sa = new AlbumFotoDoc();
         $cival_sa->nome_album = "Cival SA";
         $cival_sa->save();
+
+        $lubango = new AlbumFotoDoc();
+        $lubango->nome_album = "Lubango";
+        $lubango->save();
     }
 }

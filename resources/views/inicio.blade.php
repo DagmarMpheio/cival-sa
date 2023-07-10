@@ -28,9 +28,9 @@
         <div class="container" data-aos="fade-up">
 
             <!-- <div class="section-title">
-              <h2>Serviços</h2>
-              <p>Confira nossos serviços</p>
-            </div> -->
+                  <h2>Serviços</h2>
+                  <p>Confira nossos serviços</p>
+                </div> -->
 
             <div class="row row-servicos" data-aos="fade-up" data-aos-delay="200">
                 <div class="col-md-6">
@@ -87,20 +87,20 @@
                 <div class="card col-md-5 col-lg-3 m-1 p-0 bg-preto" data-aos-duration="1000" data-aos="fade-up"
                     data-aos-delay="1000">
                     @if ($post->image_url)
-                      <div class="item-imagem">
-                          <img class="img-top img-fluid" alt="{{ $post->title}}" src="/img/upload/{{ $post->image }}">
-                      </div>
+                        <div class="item-imagem">
+                            <img class="img-top img-fluid" alt="{{ $post->title }}" src="/img/upload/{{ $post->image }}">
+                        </div>
                     @endif
                     <div class="post-meta my-2 p-3">
                         <span class="bg-info p-1 rounded my-1"> {{ $post->category->title }} </span>
                         <span class="mx-1 text-muted">•</span>
                         <span class="text-muted">{{ date('d M, Y', strtotime($post->published_at)) }}</span>
-                        <a class="d-block  titulo-link h5 text-uppercase" href="{{route('blog.show', $post->slug)}}">
+                        <a class="d-block  titulo-link h5 text-uppercase" href="{{ route('blog.show', $post->slug) }}">
                             {{ $post->title }}
                         </a>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <a class="col-6 btn btn-amarelo mb-2" href="{{route('blog.show',$post->slug)}}">
+                        <a class="col-6 btn btn-amarelo mb-2" href="{{ route('blog.show', $post->slug) }}">
                             Saiba mais <i class="bi-arrow-right-circle-fill"></i>
                         </a>
                     </div>
@@ -213,8 +213,8 @@
                 </div>
 
                 <!-- <div class="col-11 text-center">
-                <a class="btn btn-amarelo" href="#">Ver mais  <i class="bi-arrow-right"></i></a>
-              </div> -->
+                    <a class="btn btn-amarelo" href="#">Ver mais  <i class="bi-arrow-right"></i></a>
+                  </div> -->
 
             </div>
 
@@ -231,8 +231,8 @@
                 </div>
 
                 <!-- <div class="col-11 text-center">
-                <a class="btn btn-amarelo" href="#">Ver mais  <i class="bi-arrow-right"></i></a>
-              </div> -->
+                    <a class="btn btn-amarelo" href="#">Ver mais  <i class="bi-arrow-right"></i></a>
+                  </div> -->
 
             </div>
 
@@ -249,8 +249,8 @@
                 </div>
 
                 <!-- <div class="col-11 text-center">
-                <a class="btn btn-amarelo" href="#">Ver mais <i class="bi-arrow-right"></i></a>
-              </div> -->
+                    <a class="btn btn-amarelo" href="#">Ver mais <i class="bi-arrow-right"></i></a>
+                  </div> -->
 
             </div>
 
@@ -267,136 +267,31 @@
         </div>
 
         <div class="container" data-aos="fade-up">
-
-
-
             <div class="row" data-aos="fade-up" data-aos-delay="100">
                 <div class="col-lg-12 d-flex justify-content-center">
                     <ul id="portfolio-flters">
                         <li data-filter="*" class="filter-active">Tudo</li>
-                        <li data-filter=".filter-huila">Huíla</li>
-                        <li data-filter=".filter-cival-sa">CIVAL SA</li>
-                        <li data-filter=".filter-lubango">Lubango</li>
+                        @foreach ($albums as $album)
+                            <li data-filter=".filter-{{Str::slug($album->nome_album)}}">{{$album->nome_album}}</li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
 
             <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-lubango">
-                    <img src="assets/img/img9.jpg" class="img-fluid" alt="">
+                @foreach($imgs as $img)
+                <div class="col-lg-4 col-md-6 portfolio-item filter-{{Str::slug($img->album->nome_album)}}">
+                    <img src="/multimedia/uploadImage/{{$img->ficheiro}}" class="img-fluid" alt="{{$img->nome_ficheiro}}" style="width: 400px; height: 250px;">
                     <div class="portfolio-info">
-                        <h4>Lubango</h4>
-                        <p class="text-truncate">Lubango preview</p>
-                        <a href="assets/img/img9.jpg" data-gallery="portfolioGallery"
-                            class="portfolio-lightbox preview-link" title="Lubango"><i class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                class="bx bx-link"></i></a>
+                        <h4>{{$img->nome_ficheiro}}</h4>
+                        <p class="text-truncate">{{$img->descricao}}</p>
+                        <a href="/multimedia/uploadImage/{{$img->ficheiro}}" data-gallery="portfolioGallery"
+                            class="portfolio-lightbox preview-link" title="{{$img->nome_ficheiro}}">
+                            <i class="bx bx-plus"></i>
+                        </a>
                     </div>
                 </div>
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-lubango">
-                    <img src="assets/img/img8.jpg" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4> Lubango CIVAL</h4>
-                        <p>Centro da TPA Av 4 de fevereiro</p>
-                        <a href="/assets/img/img7.jpg" data-gallery="portfolioGallery"
-                            class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                class="bx bx-link"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-cival-sa">
-                    <img src="/assets/img/img5.jpg" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4>CIVAL SA 2 Huila</h4>
-                        <p>Lubango Imagem</p>
-                        <a href="/assets/img/img5.jpg" data-gallery="portfolioGallery"
-                            class="portfolio-lightbox preview-link" title="Huila Lubango Imagem"><i
-                                class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                class="bx bx-link"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-huila">
-                    <img src="/assets/img/img4.jpg" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4>Huila </h4>
-                        <p>Província da huíla</p>
-                        <a href="/assets/img/img4.jpg" data-gallery="portfolioGallery"
-                            class="portfolio-lightbox preview-link" title="huíla provi"><i class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                class="bx bx-link"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-lubango">
-                    <img src="/assets/img/img2.jpg" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4>Huíla</h4>
-                        <p class="text-truncate">Lubango djjd jjdjd sjsjjss ssjjs sjsjjs sjsjjs sjjsjs sjsjs sss sssss
-                            sssjsjs sss ss sss ssjs s s sjsjjsjs Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Sequi numquam eum assumenda unde quisquam facilis voluptatibus nesciunt delectus repellat
-                            recusandae harum totam natus, minus fugiat est in odio nulla dolorem. </p>
-                        <a href="/assets/img/img2.jpg" data-gallery="portfolioGallery"
-                            class="portfolio-lightbox preview-link" title="Titulo da Imagem"><i
-                                class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                class="bx bx-link"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-cival-sa">
-                    <img src="/assets/img/img10.jpg" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4>CIVAL em Laureanos</h4>
-                        <p>Lubango rua cival</p>
-                        <a href="/assets/img/img10.jpg" data-gallery="portfolioGallery"
-                            class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                class="bx bx-link"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-lubango">
-                    <img src="/assets/img/img11.jpg" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4>Huíla</h4>
-                        <p>Fenda da Tundavala</p>
-                        <a href="/assets/img/img11.jpg" data-gallery="portfolioGallery"
-                            class="portfolio-lightbox preview-link" title="fenda da tundavala"><i
-                                class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                class="bx bx-link"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-lubango">
-                    <img src="assets/img/img8.jpg" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4>Cristo Rei</h4>
-                        <p>Lubango montanhas do Cristo rei</p>
-                        <a href="/assets/img/img8.jpg" data-gallery="portfolioGallery"
-                            class="portfolio-lightbox preview-link" title="Cristo Rei"><i class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                class="bx bx-link"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-cival-sa">
-                    <img src="/assets/img/requisitos/IMG-20230405-WA0038.jpg" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4>CIVAL SA</h4>
-                        <p>CIVAL O melhor Centro de Inspeção </p>
-                        <a href="/assets/img/requisitos/IMG-20230405-WA0038.jpg" data-gallery="portfolioGallery"
-                            class="portfolio-lightbox preview-link" title="CIVAL Sa"><i class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                class="bx bx-link"></i></a>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
 
         </div>
@@ -520,14 +415,14 @@
                         </div>
                         <div class="my-3">
                             <div class="loading">A carregar</div>
-							@if(session('msgerror'))
+                            @if (session('msgerror'))
                                 <div id="messageForm" class="alert alert-danger">
-									{{ session('msgerror') }}
+                                    {{ session('msgerror') }}
                                 </div>
                             @endif
                             <div class="error-message"></div>
 
-                            @if(session('msg'))
+                            @if (session('msg'))
                                 <div id="messageForm" class="alert alert-success sent-messages">
                                     {{ session('msg') }}
                                 </div>

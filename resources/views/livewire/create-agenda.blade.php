@@ -251,10 +251,18 @@
                     </div>
                 </div>
 
+                
+
+                <button class="btn btn-primary-yellow nextBtn btn-lg pull-right mb-4" type="button" wire:click="addInput">
+                    <i class="align-middle" data-feather="add"></i>
+                    <span class="align-middle">Add Veículo</span>
+                </button>
+
                 <button class="btn btn-primary-yellow nextBtn btn-lg pull-right mb-4" type="button" wire:click="secondStepSubmit">
                     <span class="align-middle">Próximo</span>
                     <i class="align-middle" data-feather="arrow-right"></i>
                 </button>
+                
                 <button class="btn btn-dark text-yellow1 nextBtn btn-lg pull-right mb-4" type="button" wire:click="back(1)">
                     <i class="align-middle" data-feather="arrow-left"></i>
                     <span class="align-middle">Voltar</span>
@@ -302,7 +310,8 @@
                         <td><strong>{{$combustivel}}</strong></td>
                     </tr>
                 </table>
-                
+            
+
                 <button class="btn btn-primary-yellow btn-lg pull-right mb-4" wire:click="submitForm" type="button">
                     <i class="align-middle" data-feather="save"></i>
                     <span class="align-middle">Guardar</span>

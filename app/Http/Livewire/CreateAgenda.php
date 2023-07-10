@@ -16,6 +16,8 @@ class CreateAgenda extends Component
     public $currentStep = 1;
     public $service_id, $employee_id, $data, $start_time, $comments; //variaveis do agendamento
     public $marca, $modelo, $matricula, $data_matricula, $tipo_veiculo, $combustivel; //variaveis do veiculo no agendamento
+    public $inputs = [];
+    protected $rules = [];
     public $successMessage = '';
 
     public function render()
@@ -37,6 +39,8 @@ class CreateAgenda extends Component
             $horariosDisponiveis[] = $horarioAtual->format('H:i');
             $horarioAtual->addMinutes(15);
         }
+
+        
         return view('livewire.create-agenda', compact('servicos', 'atendentes', 'horariosDisponiveis'));
     }
 
@@ -121,5 +125,26 @@ class CreateAgenda extends Component
         $this->data_matricula = '';
         $this->tipo_veiculo = '';
         $this->combustivel = '';
+    }
+
+
+    public function addInput()
+    {
+        $this->inputs[] = [
+            'marca' => '',
+            'modelo' => '',
+            'matricula' => '',
+            'data_matricula' => '',
+            'tipo_veiculo' => '',
+            'combustivel' => '',
+        ];
+
+        // Adiciona as regras de validação para o novo input
+        $this->rules['inputs.' . (count($this->inputs) - 1) . '.marca'] = 'required';
+        $this->rules['inputs.' . (count($this->inputs) - 1) . '.modelo'] = 'required';
+        $this->rules['inputs.' . (count($this->inputs) - 1) . '.matricula'] = 'required';
+        $this->rules['inputs.' . (count($this->inputs) - 1) . '.data_matricula'] = 'required';
+        $this->rules['inputs.' . (count($this->inputs) - 1) . '.tipo_veiculo'] = 'required';
+        $this->rules['inputs.' . (count($this->inputs) - 1) . '.combustivel'] = 'required';
     }
 }

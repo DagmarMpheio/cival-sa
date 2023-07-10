@@ -197,7 +197,7 @@
   }
 
   /**
-   * Porfolio isotope and filter
+   * Porfolio isotope and filter - GALERIA
    */
   window.addEventListener('load', () => {
 

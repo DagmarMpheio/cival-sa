@@ -34,6 +34,7 @@ class BlogController extends Controller
         $postComments = $post->comments()->simplePaginate(3);
 
         return view("blog.show", compact('post','postComments'));
+		//return view("blog.show", compact('post','postComments'));
     }
 
     public function category(Categoria $category)
